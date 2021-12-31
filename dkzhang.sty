@@ -35,6 +35,13 @@
 	colbacktitle=black,
 	grow to left by=5.5mm,
 	grow to right by=5.5mm,
+	before upper={
+		\setlength{\parskip}{0.25\baselineskip}
+		\setlength{\abovedisplayskip}{0.25\baselineskip}
+		\setlength{\belowdisplayskip}{0.25\baselineskip}
+		\setlength{\abovedisplayshortskip}{0.25\baselineskip}
+		\setlength{\belowdisplayshortskip}{0.25\baselineskip}
+	},
 	title={\textbf{Definition: {#1}}},
 	attach boxed title to top text left={yshift=-2mm},
 	boxed title style={size=small}
@@ -43,7 +50,6 @@
 \newtcolorbox{tcthmbox}[1]{
 	enhanced,
 	breakable,
-	parbox=false,
 	coltext=black,
 	coltitle=white,
 	colframe=black,
@@ -51,13 +57,26 @@
 	grow to left by=5.5mm,
 	grow to right by=5.5mm,
 	title={\textbf{{#1}}},
+	before upper={
+		\setlength{\parskip}{0.25\baselineskip}
+		\setlength{\abovedisplayskip}{0.25\baselineskip}
+		\setlength{\belowdisplayskip}{0.25\baselineskip}
+		\setlength{\abovedisplayshortskip}{0.25\baselineskip}
+		\setlength{\belowdisplayshortskip}{0.25\baselineskip}
+	},
+	before lower={
+		\setlength{\parskip}{0.25\baselineskip}
+		\setlength{\abovedisplayskip}{0.25\baselineskip}
+		\setlength{\belowdisplayskip}{0.25\baselineskip}
+		\setlength{\abovedisplayshortskip}{0.25\baselineskip}
+		\setlength{\belowdisplayshortskip}{0.25\baselineskip}
+	},
 	attach boxed title to top text left={yshift=-2mm},
 	boxed title style={size=small}
 }
 
 \newenvironment{dfnbox}[1]{
 	\begin{tcdfnbox}{#1}
-	\setlength{\parskip}{0.25\baselineskip}
 }{
 	\end{tcdfnbox}
 }
