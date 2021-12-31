@@ -4,9 +4,10 @@
 \usepackage[margin=1in]{geometry}
 
 \usepackage{dkzhang}
-
 \usepackage{amsmath}
 \usepackage{hyperref}
+
+\allowdisplaybreaks
 
 \begin{document}
 
@@ -60,6 +61,18 @@
 	\[ y = y \cdot 1 = y \cdot (x \cdot x^{-1}) = (y \cdot x) \cdot x^{-1} = 1 \cdot x^{-1} = x^{-1}. \]
 \end{thmbox}
 
+\begin{thmbox}{Inversion is an Involution}
+	\textbf{Theorem:} Let $\alg{G; 1, {}^{-1}, \cdot}$ be a group. For all $x \in G$, we have $(x^{-1})^{-1} = x$.
+\tcblower
+	\textit{Proof:} By the uniqueness of inverses, in order to show that $x$ is the inverse of $x^{-1}$, it suffices to show that $x \cdot x^{-1} = 1$. This is guaranteed by the inverse property.
+\end{thmbox}
+
+\begin{thmbox}{Identity Element is its own Inverse}
+	\textbf{Theorem:} If $\alg{G; 1, {}^{-1}, \cdot}$ is a group, then $1^{-1} = 1$.
+\tcblower
+	\textit{Proof:} By the uniqueness of inverses, in order to show that $1$ is its own inverse, it suffices to show that $1 \cdot 1 = 1$. This is guaranteed by the identity property.
+\end{thmbox}
+
 When dealing with more than one group in the same context, it is often helpful to label the identity elements, inversion operations, and product operations by the name of the group they belong to. For example, instead of naming the elements of a group $\alg{G; 1, {}^{-1}, \cdot}$, we might choose to name them $\alg{G; 1_G, {}^{-1}_G, \cdot_G}$.
 
 \begin{dfnbox}{Group Homomorphism}
@@ -74,15 +87,15 @@ When dealing with more than one group in the same context, it is often helpful t
 \begin{thmbox}{Preserving Products is Sufficient}
 	\textbf{Theorem:} Let $\alg{G; 1_G, {}^{-1}_G, \cdot_G}$ and $\alg{H; 1_H, {}^{-1}_H, \cdot_H}$ be groups. If a function $f: G \to H$ satisfies $f(x \cdot_G y) = f(x) \cdot_H f(y)$ for all $x, y \in G$, then $f$ is a group homomorphism.
 \tcblower
-	\textit{Proof:} We must show that $f$ preserves the identity and inverses. For preservation of the identity, we apply preservation of products to the identity $1_G = 1_G \cdot_G 1_G$ to conclude that
+	\textit{Proof:} We must show that $f$ preserves the identity and inverses. For preservation of the identity, we apply preservation of products to the equation $1_G = 1_G \cdot_G 1_G$ to conclude that
 	\[ f(1_G) = f(1_G \cdot_G 1_G) = f(1_G) \cdot_H f(1_G). \]
 	By cancellation, it follows that $f(1_G) = 1_H$. For preservation of inverses, let $x \in G$ be given. Since $1_G = x \cdot_G x^{-1}_G$, we can apply preservation of products and the identity to write
 	\[ 1_H = f(1_G) = f(x \cdot_G x^{-1}_G) = f(x) \cdot_H f(x^{-1}_G). \]
 	By uniqueness of inverses, it follows that $f(x^{-1}_G) = f(x)^{-1}_H$.
 \end{thmbox}
 
-\begin{dfnbox}{Kernel}
-	Let $\alg{G; 1_G, {}^{-1}_G, \cdot_G}$ and $\alg{H; 1_H, {}^{-1}_H, \cdot_H}$ be groups, and let $f: G \to H$ be a group homomorphism. The \dfntxt{kernel} of $f$ is the subset of $G$ defined by
+\begin{dfnbox}{Kernel, $\ker f$}
+	Let $\alg{G; 1_G, {}^{-1}_G, \cdot_G}$ and $\alg{H; 1_H, {}^{-1}_H, \cdot_H}$ be groups, and let $f: G \to H$ be a group homomorphism. The \dfntxt{kernel} of $f$ is the subset $\ker f \subseteq G$ defined by
 	\[ \ker f \coloneq \{ x \in G : f(x) = 1_H \}. \]
 \end{dfnbox}
 
@@ -96,6 +109,21 @@ When dealing with more than one group in the same context, it is often helpful t
 	We write $H \le G$ to denote that $H$ is a subgroup of $\alg{G; 1, {}^{-1}, \cdot}$.
 \end{dfnbox}
 
+\begin{thmbox}{Kernels are Subgroups}
+	\textbf{Theorem:} Let $\alg{G; 1_G, {}^{-1}_G, \cdot_G}$ and $\alg{H; 1_H, {}^{-1}_H, \cdot_H}$ be groups. If $f: G \to H$ is a group homomorphism, then $\ker f$ is a subgroup of $\alg{G; 1_G, {}^{-1}_G, \cdot_G}$.
+\tcblower
+	\textit{Proof:} We need to verify that $\ker f$ contains the identity, is closed under inverses, and is closed under products.
+	\begin{dfnitems}
+		\item A homomorphism must preserve the identity, i.e., $f(1_G) = 1_H$, so $1_G \in \ker f$.
+		\item Let $x \in \ker f$ be given. By applying $f$ to both sides of the equation $1_G = x \cdot_G x^{-1}_G$, we obtain
+		\[ 1_H = f(1_G) = f(x \cdot_G x^{-1}_G) = f(x) \cdot_H f(x^{-1}_G) = 1_H \cdot_H f(x^{-1}_G) = f(x^{-1}_G) \]
+		which proves that $x^{-1}_G \in \ker f$.
+		\item If $x, y \in \ker f$, then
+		\[ f(x \cdot_G y) = f(x) \cdot_H f(y) = 1_H \cdot_H 1_H = 1_H \]
+		which proves that $x \cdot_G y \in \ker f$.
+	\end{dfnitems}
+\end{thmbox}
+
 \begin{itemize}
 	\item We will henceforth refer to a group $\alg{G; 1, {}^{-1}, \cdot}$ simply by the name of its underlying set $G$, omitting explicit mention of its identity element, inversion operation, and product operation. Thus, instead of saying ``let $\alg{G; 1, {}^{-1}, \cdot}$ be a group,'' we will simply say ``let $G$ be a group.''
 	\item When discussing a particular group $G$, the symbols $1$, ${}^{-1}$, and $\cdot$ will be implicitly understood to refer to identity element, inversion operation, and product operation of the group $G$ under discussion. When multiple groups are being discussed simultaneously, we will disambiguate these symbols using the name of the underlying set of the group they belong to (for example, $1_G$ and $\cdot_G$).
@@ -103,10 +131,43 @@ When dealing with more than one group in the same context, it is often helpful t
 	\item Group operations will no longer be denoted by the symbol $\cdot$, but merely by juxtaposition. What we previously wrote as $x \cdot y$ will now simply be denoted by $xy$.
 \end{itemize}
 
-\begin{dfnbox}{Normal Subgroup, $H \normalin G$}
-	Let $G$ be a group. A \dfntxt{normal subgroup} of $\alg{G; 1, {}^{-1}, \cdot}$ is a subgroup $N \le G$ satisfying the following additional requirement:
+\begin{thmbox}{Inverse of a Product is the Reverse Product of Inverses}
+	\textbf{Theorem:} Let $G$ be a group and $n \in \N$. If $x_1, \dots, x_n \in G$, then $(x_1 x_2 \cdots x_n)^{-1} = x_n^{-1} \cdots x_2^{-1} x_1^{-1}$.
+\tcblower
+	\textit{Proof:} By the uniqueness of inverses, it suffices to show that $x_1 x_2 \cdots x_n x_n^{-1} \cdots x_2^{-1} x_1^{-1} = 1$. We proceed by induction on $n$. The base case $n = 1$ holds by the inverse property $x_1 x_1^{-1} = 1$. Supposing that the claim holds for $n = k$, we establish the claim for $n = k + 1$ by calculating as follows:
+	\[ x_1 x_2 \cdots x_k x_{k+1} x_{k+1}^{-1} x_k^{-1} \cdots x_2^{-1} x_1^{-1} = x_1 x_2 \cdots x_k x_k^{-1} \cdots x_2^{-1} x_1^{-1} = 1 \]
+	The first equality follows from the inverse property $x_{k+1} x_{k+1}^{-1} = 1$, and the second equality follows from the inductive hypothesis.
+\end{thmbox}
+
+\begin{dfnbox}{Left Conjugate, Right Conjugate}
+	Let $G$ be a group, and let $g, x \in G$. The \dfntxt{left conjugate} of $x$ by $g$ is the element ${}^g x \in G$ defined by
+	\[ {}^g x \coloneq g x g^{-1}. \]
+	Similarly, the \dfntxt{right conjugate} of $x$ by $g$ is the element $x^g \in G$ defined by
+	\[ x^g \coloneq g^{-1} x g. \]
+\end{dfnbox}
+
+\begin{thmbox}{Properties of Conjugation}
+	\textbf{Theorem:} Let $G$ be a group. For all $g, h, x \in G$, we have:
 	\begin{dfnitems}
-		\item \dfntxt{Closed under conjugation}: If $g \in G$ and $x \in N$, then $g x g^{-1} \in N$.
+		\item ${}^1 x = x^1 = x$
+		\item ${}^{g^{-1}} x = x^g$
+		\item $x^{g^{-1}} = {}^g x$
+		\item ${}^{g} ({}^{h} x) = {}^{gh} x$
+		\item $(x^g)^h = x^{gh}$
+	\end{dfnitems}
+\tcblower
+	\textit{Proof:} Let $g, h, x \in G$ be given.
+	\[ {}^1 x = 1 x 1^{-1} = x1 = x = 1x = 1^{-1} x 1 = x^1 \]
+	\[ {}^{g^{-1}} x = g^{-1} x (g^{-1})^{-1} = g^{-1} x g = x^g \]
+	\[ x^{g^{-1}} = (g^{-1})^{-1} x g^{-1} = g x g^{-1} = {}^g x \]
+	\[ {}^{g} ({}^{h} x) = g ({}^h x) g^{-1} = g h x h^{-1} g^{-1} = (gh) x (gh)^{-1} = {}^{gh} x \]
+	\[ (x^g)^h = h^{-1} (x^g) h = h^{-1} g^{-1} x g x = (gh)^{-1} x (gh) = x^{gh} \]
+\end{thmbox}
+
+\begin{dfnbox}{Normal Subgroup, $H \normalin G$}
+	Let $G$ be a group. A \dfntxt{normal subgroup} of $\alg{G; 1, {}^{-1}, \cdot}$ is a subgroup $N \le G$ that satisfies the following additional requirement:
+	\begin{dfnitems}
+		\item \dfntxt{Closed under conjugation}: If $g \in G$ and $x \in N$, then $x^g \in N$.
 	\end{dfnitems}
 \end{dfnbox}
 
