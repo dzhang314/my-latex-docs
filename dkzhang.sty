@@ -17,7 +17,7 @@
 \newlist{dfnitems}{itemize}{1} % condensed list for use inside tcolorboxes
 \setlist[dfnitems]{
 	label=\textbullet,
-	parsep=0.1\baselineskip
+	parsep=0.125\baselineskip
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BOXES
@@ -33,14 +33,16 @@
 	coltitle=white,
 	colframe=black,
 	colbacktitle=black,
-	grow to left by=5.5mm,
-	grow to right by=5.5mm,
+	left=2.5mm,
+	right=2.5mm,
+	grow to left by=4mm,
+	grow to right by=4mm,
 	before upper={
-		\setlength{\parskip}{0.25\baselineskip}
-		\setlength{\abovedisplayskip}{0.25\baselineskip}
-		\setlength{\belowdisplayskip}{0.25\baselineskip}
-		\setlength{\abovedisplayshortskip}{0.25\baselineskip}
-		\setlength{\belowdisplayshortskip}{0.25\baselineskip}
+		\setlength{\parskip}{0.375\baselineskip}
+		\setlength{\abovedisplayskip}{0.375\baselineskip}
+		\setlength{\belowdisplayskip}{0.375\baselineskip}
+		\setlength{\abovedisplayshortskip}{0.125\baselineskip}
+		\setlength{\belowdisplayshortskip}{0.375\baselineskip}
 	},
 	title={\textbf{Definition: {#1}}},
 	attach boxed title to top text left={yshift=-2mm},
@@ -54,23 +56,25 @@
 	coltitle=white,
 	colframe=black,
 	colbacktitle=black,
-	grow to left by=5.5mm,
-	grow to right by=5.5mm,
-	title={\textbf{{#1}}},
+	left=2.5mm,
+	right=2.5mm,
+	grow to left by=4mm,
+	grow to right by=4mm,
 	before upper={
-		\setlength{\parskip}{0.25\baselineskip}
-		\setlength{\abovedisplayskip}{0.25\baselineskip}
-		\setlength{\belowdisplayskip}{0.25\baselineskip}
-		\setlength{\abovedisplayshortskip}{0.25\baselineskip}
-		\setlength{\belowdisplayshortskip}{0.25\baselineskip}
+		\setlength{\parskip}{0.375\baselineskip}
+		\setlength{\abovedisplayskip}{0.375\baselineskip}
+		\setlength{\belowdisplayskip}{0.375\baselineskip}
+		\setlength{\abovedisplayshortskip}{0.125\baselineskip}
+		\setlength{\belowdisplayshortskip}{0.375\baselineskip}
 	},
 	before lower={
-		\setlength{\parskip}{0.25\baselineskip}
-		\setlength{\abovedisplayskip}{0.25\baselineskip}
-		\setlength{\belowdisplayskip}{0.25\baselineskip}
-		\setlength{\abovedisplayshortskip}{0.25\baselineskip}
-		\setlength{\belowdisplayshortskip}{0.25\baselineskip}
+		\setlength{\parskip}{0.375\baselineskip}
+		\setlength{\abovedisplayskip}{0.375\baselineskip}
+		\setlength{\belowdisplayskip}{0.375\baselineskip}
+		\setlength{\abovedisplayshortskip}{0.125\baselineskip}
+		\setlength{\belowdisplayshortskip}{0.375\baselineskip}
 	},
+	title={\textbf{{#1}}},
 	attach boxed title to top text left={yshift=-2mm},
 	boxed title style={size=small}
 }
