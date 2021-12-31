@@ -5,6 +5,7 @@
 
 \usepackage{dkzhang}
 
+\usepackage{amsmath}
 \usepackage{hyperref}
 
 \begin{document}
@@ -19,7 +20,7 @@
 		\item a set $G$, called the \dfntxt{underlying set};
 		\item a distinguished element $1 \in G$, called the \dfntxt{identity element};
 		\item a unary operation ${}^{-1}: G \to G$, written as $x \mapsto x^{-1}$, called \dfntxt{inversion};
-		\item a binary operation $\cdot: G \times G \to G$, written as $(x, y) \mapsto x \cdot y$, called the \dfntxt{group operation};
+		\item a binary operation $\cdot: G \times G \to G$, written as $(x, y) \mapsto x \cdot y$, called the \dfntxt{group operation} or \dfntxt{group product};
 	\end{dfnitems}
 	satisfying the following requirements:
 	\begin{dfnitems}
@@ -29,8 +30,88 @@
 	\end{dfnitems}
 \end{dfnbox}
 
+\begin{thmbox}{Cancellation Laws}
+	\textbf{Theorem:} Let $\alg{G; 1, {}^{-1}, \cdot}$ be a group, and let $x, y, z \in G$.
+	\begin{dfnitems}
+		\item \dfntxt{Left cancellation law}: If $x \cdot y = x \cdot z$, then $y = z$.
+		\item \dfntxt{Right cancellation law}: If $x \cdot z = y \cdot z$, then $x = y$.
+	\end{dfnitems}
+\tcblower
+	\textit{Proof:} If $x \cdot y = x \cdot z$, then:
+	\begin{align*}
+		y & = 1 \cdot y                &  & \text{(identity property)}    \\
+		  & = (x^{-1} \cdot x) \cdot y &  & \text{(inverse property)}     \\
+		  & = x^{-1} \cdot (x \cdot y) &  & \text{(associative property)} \\
+		  & = x^{-1} \cdot (x \cdot z) &  & \text{(by hypothesis)}        \\
+		  & = (x^{-1} \cdot x) \cdot z &  & \text{(associative property)} \\
+		  & = 1 \cdot z                &  & \text{(inverse property)}     \\
+		  & = z                        &  & \text{(identity property)}
+	\end{align*}
+	Similarly, if $x \cdot z = y \cdot z$, then
+	\[ x = x \cdot 1 = x \cdot (z \cdot z^{-1}) = (x \cdot z) \cdot z^{-1} = (y \cdot z) \cdot z^{-1} = y \cdot (z \cdot z^{-1}) = y \cdot 1 = y. \]
+\end{thmbox}
+
+\begin{thmbox}{Uniqueness of Inverses} \label{grpuniq}
+	\textbf{Theorem:} Let $\alg{G; 1, {}^{-1}, \cdot}$ be a group, and let $x, y \in G$. If $x \cdot y = 1$ or $y \cdot x = 1$, then $y = x^{-1}$.
+\tcblower
+	\textit{Proof:} If $x \cdot y = 1$, then
+	\[ y = 1 \cdot y = (x^{-1} \cdot x) \cdot y = x^{-1} \cdot (x \cdot y) = x^{-1} \cdot 1 = x^{-1}. \]
+	Similarly, if $y \cdot x = 1$, then
+	\[ y = y \cdot 1 = y \cdot (x \cdot x^{-1}) = (y \cdot x) \cdot x^{-1} = 1 \cdot x^{-1} = x^{-1}. \]
+\end{thmbox}
+
+When dealing with more than one group in the same context, it is often helpful to label the identity elements, inversion operations, and product operations by the name of the group they belong to. For example, instead of naming the elements of a group $\alg{G; 1, {}^{-1}, \cdot}$, we might choose to name them $\alg{G; 1_G, {}^{-1}_G, \cdot_G}$.
+
+\begin{dfnbox}{Group Homomorphism}
+	Let $\alg{G; 1_G, {}^{-1}_G, \cdot_G}$ and $\alg{H; 1_H, {}^{-1}_H, \cdot_H}$ be groups. A \dfntxt{group homomorphism} is a function $f: G \to H$ satisfying the following requirements:
+	\begin{dfnitems}
+		\item \dfntxt{Preserves the identity}: $f(1_G) = 1_H$.
+		\item \dfntxt{Preserves inverses}: $f(x^{-1}_G) = f(x)^{-1}_H$ for all $x \in G$.
+		\item \dfntxt{Preserves products}: $f(x \cdot_G y) = f(x) \cdot_H f(y)$ for all $x, y \in G$.
+	\end{dfnitems}
+\end{dfnbox}
+
+\begin{thmbox}{Preserving Products is Sufficient}
+	\textbf{Theorem:} Let $\alg{G; 1_G, {}^{-1}_G, \cdot_G}$ and $\alg{H; 1_H, {}^{-1}_H, \cdot_H}$ be groups. If a function $f: G \to H$ satisfies $f(x \cdot_G y) = f(x) \cdot_H f(y)$ for all $x, y \in G$, then $f$ is a group homomorphism.
+\tcblower
+	\textit{Proof:} We must show that $f$ preserves the identity and inverses. For preservation of the identity, we apply preservation of products to the identity $1_G = 1_G \cdot_G 1_G$ to conclude that
+	\[ f(1_G) = f(1_G \cdot_G 1_G) = f(1_G) \cdot_H f(1_G). \]
+	By cancellation, it follows that $f(1_G) = 1_H$. For preservation of inverses, let $x \in G$ be given. Since $1_G = x \cdot_G x^{-1}_G$, we can apply preservation of products and the identity to write
+	\[ 1_H = f(1_G) = f(x \cdot_G x^{-1}_G) = f(x) \cdot_H f(x^{-1}_G). \]
+	By uniqueness of inverses, it follows that $f(x^{-1}_G) = f(x)^{-1}_H$.
+\end{thmbox}
+
+\begin{dfnbox}{Kernel}
+	Let $\alg{G; 1_G, {}^{-1}_G, \cdot_G}$ and $\alg{H; 1_H, {}^{-1}_H, \cdot_H}$ be groups, and let $f: G \to H$ be a group homomorphism. The \dfntxt{kernel} of $f$ is the subset of $G$ defined by
+	\[ \ker f \coloneq \{ x \in G : f(x) = 1_H \}. \]
+\end{dfnbox}
+
+\begin{dfnbox}{Subgroup, $H \le G$}
+	Let $\alg{G; 1, {}^{-1}, \cdot}$ be a group. A \dfntxt{subgroup} of $\alg{G; 1, {}^{-1}, \cdot}$ is a subset $H \subseteq G$ such that $\alg{H; 1, {}^{-1}|_H, \cdot|_H}$ is a group, where ${}^{-1}|_H$ denotes the restriction of ${}^{-1}$ to $H \subseteq G$, and $\cdot|_H$ denotes the restriction of $\cdot$ to $H \times H \subseteq G \times G$. Explicitly, this means that:
+	\begin{dfnitems}
+		\item \dfntxt{Contains the identity}: $1 \in H$.
+		\item \dfntxt{Closed under inverses}: If $x \in H$, then $x^{-1} \in H$.
+		\item \dfntxt{Closed under products}: If $x, y \in H$, then $x \cdot y \in H$.
+	\end{dfnitems}
+	We write $H \le G$ to denote that $H$ is a subgroup of $\alg{G; 1, {}^{-1}, \cdot}$.
+\end{dfnbox}
+
+\begin{itemize}
+	\item We will henceforth refer to a group $\alg{G; 1, {}^{-1}, \cdot}$ simply by the name of its underlying set $G$, omitting explicit mention of its identity element, inversion operation, and product operation. Thus, instead of saying ``let $\alg{G; 1, {}^{-1}, \cdot}$ be a group,'' we will simply say ``let $G$ be a group.''
+	\item When discussing a particular group $G$, the symbols $1$, ${}^{-1}$, and $\cdot$ will be implicitly understood to refer to identity element, inversion operation, and product operation of the group $G$ under discussion. When multiple groups are being discussed simultaneously, we will disambiguate these symbols using the name of the underlying set of the group they belong to (for example, $1_G$ and $\cdot_G$).
+	\item Nested products of group elements will no longer be written with parentheses. The requirement of associativity guarantees that $x \cdot (y \cdot z) = (x \cdot y) \cdot z$, so we may write $x \cdot y \cdot z$ without fear of ambiguity. We will freely and implicitly apply the associative property whenever it is required to interpret a nested product in more than one way.
+	\item Group operations will no longer be denoted by the symbol $\cdot$, but merely by juxtaposition. What we previously wrote as $x \cdot y$ will now simply be denoted by $xy$.
+\end{itemize}
+
+\begin{dfnbox}{Normal Subgroup, $H \normalin G$}
+	Let $G$ be a group. A \dfntxt{normal subgroup} of $\alg{G; 1, {}^{-1}, \cdot}$ is a subgroup $N \le G$ satisfying the following additional requirement:
+	\begin{dfnitems}
+		\item \dfntxt{Closed under conjugation}: If $g \in G$ and $x \in N$, then $g x g^{-1} \in N$.
+	\end{dfnitems}
+\end{dfnbox}
+
 \begin{dfnbox}{Abelian Group}
-	An \dfntxt{abelian group} is a group $\alg{G; 1, {}^{-1}, \cdot}$ that satisfies the following requirement:
+	An \dfntxt{abelian group} is a group $\alg{G; 1, {}^{-1}, \cdot}$ that satisfies the following additional requirement:
 	\begin{dfnitems}
 		\item \dfntxt{Commutative property}: $x \cdot y = y \cdot x$ for all $x, y \in G$.
 	\end{dfnitems}
