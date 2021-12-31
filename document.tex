@@ -1,0 +1,182 @@
+% !TEX TS-program = xelatex
+
+\documentclass[12pt]{report}
+\usepackage[margin=1in]{geometry}
+
+\usepackage{dkzhang}
+
+\usepackage{hyperref}
+
+\begin{document}
+
+
+
+\chapter{Group Theory}
+
+\begin{dfnbox}{Group}
+	A \dfntxt{group} is an algebraic structure $\alg{G; 1, {}^{-1}, \cdot}$ consisting of:
+	\begin{dfnitems}
+		\item a set $G$, called the \dfntxt{underlying set};
+		\item a distinguished element $1 \in G$, called the \dfntxt{identity element};
+		\item a unary operation ${}^{-1}: G \to G$, written as $x \mapsto x^{-1}$, called \dfntxt{inversion};
+		\item a binary operation $\cdot: G \times G \to G$, written as $(x, y) \mapsto x \cdot y$, called the \dfntxt{group operation};
+	\end{dfnitems}
+	satisfying the following requirements:
+	\begin{dfnitems}
+		\item \dfntxt{Associative property}: $(x \cdot y) \cdot z = x \cdot (y \cdot z)$ for all $x, y, z \in G$.
+		\item \dfntxt{Identity property}: $1 \cdot x = x \cdot 1 = x$ for all $x \in G$.
+		\item \dfntxt{Inverse property}: $x \cdot x^{-1} = x^{-1} \cdot x = 1$ for all $x \in G$.
+	\end{dfnitems}
+\end{dfnbox}
+
+\begin{dfnbox}{Abelian Group}
+	An \dfntxt{abelian group} is a group $\alg{G; 1, {}^{-1}, \cdot}$ that satisfies the following requirement:
+	\begin{dfnitems}
+		\item \dfntxt{Commutative property}: $x \cdot y = y \cdot x$ for all $x, y \in G$.
+	\end{dfnitems}
+\end{dfnbox}
+
+When a group is abelian, it is customary to adopt a different notational convention. Instead of the \dfntxt{multiplicative notation} $\alg{G; 1, {}^{-1}, \cdot}$, for abelian groups we use the \dfntxt{additive notation} $\alg{G; 0, -, +}$.
+
+
+
+\chapter{Ring Theory}
+
+In this chapter, we introduce a new class of algebraic structures, called rngs and rings, whose study is collectively called \dfntxt{ring theory}. Rngs and rings are more complicated than groups because their definition involves not one, but two binary operations.
+
+\begin{dfnbox}{Rng}
+	A \dfntxt{rng} (pronounced as ``\textit{rung}'') is an algebraic structure $\alg{R; 0, -, +, \cdot}$ consisting of:
+	\begin{dfnitems}
+		\item a set $R$, called the \dfntxt{underlying set};
+		\item a distinguished element $0 \in R$, called the \dfntxt{zero element};
+		\item a unary operation $-: R \to R$, written as $x \mapsto -x$, called \dfntxt{negation};
+		\item a binary operation $+: R \times R \to R$, written as $(x, y) \mapsto x + y$, called \dfntxt{addition};
+		\item a binary operation $\cdot: R \times R \to R$, written as $(x, y) \mapsto x \cdot y$, called \dfntxt{multiplication};
+	\end{dfnitems}
+	satisfying the following requirements:
+	\begin{dfnitems}
+		\item \dfntxt{Additive structure}: $\alg{R; 0, -, +}$ is an abelian group.
+		\item \dfntxt{Associativity}: $(x \cdot y) \cdot z = x \cdot (y \cdot z)$ for all $x, y, z \in R$.
+		\item \dfntxt{Left distributivity}: $x \cdot (y + z) = (x \cdot y) + (x \cdot z)$ for all $x, y, z \in R$.
+		\item \dfntxt{Right distributivity}: $(x + y) \cdot z = (x \cdot z) + (y \cdot z)$ for all $x, y, z \in R$.
+	\end{dfnitems}
+\end{dfnbox}
+
+The key ingredient present in the definition of a rng is \dfntxt{distributivity}, which establishes a link between two different binary operations. We will begin our study of rngs by proving a simple (but important!) result to demonstrate the use of the distributive property.
+
+\begin{thmbox}{Multiplying by Zero Yields Zero}
+	\textbf{Theorem:} Let $\alg{R; 0, -, +, \cdot}$ be a rng. For any $x \in R$, we have $0 \cdot x = x \cdot 0 = 0$.
+\tcblower
+	\textit{Proof:} Let $x \in R$ be arbitrary. Because $0$ is the identity element of the abelian group $\langle R; 0, -, + \rangle$, we can write $0 = 0 + 0$. Using left distributivity, it follows that $0 \cdot x = (0 + 0) \cdot x = (0 \cdot x) + (0 \cdot x)$, and by canceling one copy of $0 \cdot x$ on both sides, we conclude that $0 \cdot x = 0$. We similarly apply right distributivity to the expression $x \cdot 0 = x \cdot (0 + 0) = (x \cdot 0) + (x \cdot 0)$ to conclude that $x \cdot 0 = 0$.
+\end{thmbox}
+
+\begin{dfnbox}{Ring}
+	A \dfntxt{ring} is an algebraic structure $\alg{R; 0, 1, -, +, \cdot}$ consisting of a rng $\alg{R; 0, -, +, \cdot}$ and a distinguished element $1 \in R$, called the \dfntxt{identity element}, satisfying the following requirement:
+	\begin{dfnitems}
+		\item \dfntxt{Identity}: $1 \cdot x = x \cdot 1 = x$ for all $x \in R$.
+	\end{dfnitems}
+\end{dfnbox}
+
+Note that the distinguished elements $0$ and $1$ in the definition of a ring need not be distinct. There is one ring in which $0 = 1$ holds.
+
+\begin{thmbox}{$0=1$ Implies that a Ring is Trivial}
+	\textbf{Theorem:} Let $\alg{R; 0, 1, -, +, \cdot}$ be a ring. If $0 = 1$, then $R = \{0\}$.
+\tcblower
+	\textit{Proof:} For any $x \in R$, we have $x = 1 \cdot x = 0 \cdot x = 0$.
+\end{thmbox}
+
+\begin{dfnbox}{Inverse, Left Inverse, Right Inverse, Two-Sided Inverse, Invertible, Unit}
+	Let $\alg{R; 0, 1, -, +, \cdot}$ be a ring, and let $x \in R$.
+	\begin{dfnitems}
+		\item A \dfntxt{left inverse} of $x$ is an element $y \in R$ such that $y \cdot x = 1$. If such an element exists, then we say that $x$ is \dfntxt{left-invertible}.
+		\item A \dfntxt{right inverse} of $x$ is an element $y \in R$ such that $x \cdot y = 1$. If such an element exists, then we say that $x$ is \dfntxt{right-invertible}.
+		\item A \dfntxt{two-sided inverse} of $x$, or simply an \dfntxt{inverse} of $x$, is an element $y \in R$ such that $y \cdot x = x \cdot y = 1$. If such an element exists, then we say that $x$ is \dfntxt{invertible}, and we call $x$ a \dfntxt{unit}.
+	\end{dfnitems}
+\end{dfnbox}
+
+In ring theory, the word ``inverse'' used without further elaboration usually means ``two-sided inverse.''
+
+\begin{thmbox}{Left and Right Invertibility Imply Two-Sided Invertibility}
+	\textbf{Theorem:} Let $\alg{R; 0, 1, -, +, \cdot}$ be a ring. If $x \in R$ has both a left inverse $y \in R$ and a right inverse $z \in R$, then $y = z$, and $x$ is invertible.
+\tcblower
+	\textit{Proof:} Using the associativity of multiplication, observe that
+	\[ y = y \cdot 1 = y \cdot (x \cdot z) = (y \cdot x) \cdot z = 1 \cdot z = z. \]
+	Hence, $y = z$ is a two-sided inverse of $x$.
+\end{thmbox}
+
+\begin{thmbox}{Inverses are Unique and Invertible}
+	\textbf{Corollary:} Let $\alg{R; 0, 1, -, +, \cdot}$ be a ring. If an element $x \in R$ is invertible, then it has a unique inverse. Moreover, that inverse is itself invertible, and $x$ is its unique inverse.
+\tcblower
+	\textit{Proof:} Let $y,z \in R$ be (two-sided) inverses of $x$. In particular, $y$ is a left inverse of $x$, and $z$ is a right inverse of $x$, so we can apply the preceding result to conclude that $y = z$.
+
+	Observe that the relation $x \cdot y = y \cdot x = 1$ that defines inverses is symmetric in $x$ and $y$. Hence, if $y$ is an inverse of $x$, then $x$ is also an inverse of $y$.
+\end{thmbox}
+
+This result allows us to speak unambiguously of \textit{the} inverse of an invertible element of a ring.
+
+\begin{dfnbox}{$R^\times$, $x^{-1}$}
+	Let $\alg{R; 0, 1, -, +, \cdot}$ be a ring. The set of all units in $R$ is denoted by $R^\times$. For each $x \in R^\times$, we denote by $x^{-1}$ the unique inverse of $x$. Thus, we regard the map $x \mapsto x^{-1}$ as a unary operation ${}^{-1}: R^\times \to R^\times$.
+\end{dfnbox}
+
+Using this notation, we can restate the preceding result as $x = (x^{-1})^{-1}$ for all $x \in R^\times$.
+
+\begin{thmbox}{$R^\times$ is a Group}
+	If $\alg{R; 0, 1, -, +, \cdot}$ is a ring, then $\alg{R^\times; 1, {}^{-1}, \cdot}$ is a group.
+\end{thmbox}
+
+\begin{dfnbox}{Commutative Ring}
+	A \dfntxt{commutative ring} is a ring $\alg{R; 0, 1, -, +, \cdot}$ that satisfies the following requirement:
+	\begin{dfnitems}
+		\item \dfntxt{Commutativity}: $x \cdot y = y \cdot x$ for all $x, y \in R$.
+	\end{dfnitems}
+\end{dfnbox}
+
+
+
+\chapter{Field Theory}
+
+\begin{dfnbox}{Field}
+	A \dfntxt{field} is a commutative ring $\alg{K; 0, 1, -, +, \cdot}$ in which $0 \ne 1$ and every nonzero element is invertible, i.e., $K^\times = K \setminus \{0\}$.
+\end{dfnbox}
+
+Because of the requirement that $0 \ne 1$, all fields must contain at least two distinct elements.
+
+We now prove a crucial fact that markedly distinguishes field theory from group theory and ring theory.
+
+\begin{thmbox}{Every Field Homomorphism is a Monomorphism}
+	\textbf{Theorem:} Every ring homomorphism $f: K \to R$ from a field $K$ to a ring $R$ is injective.
+\tcblower
+	\textit{Proof:}
+\end{thmbox}
+
+
+
+\chapter{Differential Algebra}
+
+\begin{dfnbox}{Derivation}
+	A \dfntxt{derivation} on a rng $\alg{R; 0, -, +, \cdot}$ is a unary operation $\dd: R \to R$ that satisfies the following requirements:
+	\begin{dfnitems}
+		\item \dfntxt{Additivity}: $\dd(x + y) = \dd(x) + \dd(y)$ for all $x, y \in R$.
+		\item \dfntxt{Leibniz rule}: $\dd(x \cdot y) = \dd(x) \cdot y + x \cdot \dd(y)$ for all $x, y \in R$.
+	\end{dfnitems}
+\end{dfnbox}
+
+\begin{dfnbox}{Differential Rng}
+	A \dfntxt{differential rng} is an algebraic structure $\alg{R; 0, -, \dd, +, \cdot}$ consisting of a rng $\alg{R; 0, -, +, \cdot}$ and a derivation $\dd: R \to R$ on $\alg{R; 0, -, +, \cdot}$.
+\end{dfnbox}
+
+\begin{dfnbox}{Antiderivative}
+	Let $R$ be a differential rng. An element $F \in R$ is an \dfntxt{antiderivative} of another element $f \in R$ if $\dd(F) = f$.
+\end{dfnbox}
+
+\begin{thmbox}{Algebraic Extensions Don't Create Antiderivatives}
+	\textbf{Theorem:} Let $K$ be a differential field of characteristic zero. If $f \in K$ does not have an antiderivative in $K$, then $f$ cannot have an antiderivative in any algebraic differential extension of $K$.
+\tcblower
+	\textit{Proof:} We proceed by contraposition. Suppose that there exists an algebraic differential extension $L/K$ having an element $g \in L$ for which $f = \dd(g)$. Let $\Tr: K[g] \to K$ denote the trace map, and recall that $\Tr$ commutes with $\dd$. Since $f \in K$, we have $\Tr(f) = nf$, where $n \coloneq [K[g] : K]$. It follows that
+	\[ \dd \left( \frac{\Tr(g)}{n} \right) = \frac{1}{n} \dd(\Tr(g)) = \frac{1}{n} \Tr(\dd(g)) = \frac{1}{n} \Tr(f) = f \]
+	which shows that $\Tr(g)/n \in K$ is an antiderivative of $f$.
+\end{thmbox}
+
+
+
+\end{document}

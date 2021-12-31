@@ -1,0 +1,80 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FONTS
+
+\usepackage{fontspec} % needed to set main font
+\setmainfont{STIX Two Text}
+
+\usepackage{unicode-math} % needed to set math font -- also replaces amssymb
+\setmathfont{STIX Two Math}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PAGE LAYOUT
+
+\usepackage{parskip} % skip line after each paragraph, and don't indent
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LISTS
+
+\usepackage{enumitem} % needed to define new list environments
+
+\newlist{dfnitems}{itemize}{1} % condensed list for use inside tcolorboxes
+\setlist[dfnitems]{
+	label=\textbullet,
+	parsep=0.1\baselineskip
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BOXES
+
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
+\tcbuselibrary{skins}
+
+\newtcolorbox{tcdfnbox}[1]{
+	enhanced,
+	breakable,
+	coltext=black,
+	coltitle=white,
+	colframe=black,
+	colbacktitle=black,
+	grow to left by=5.5mm,
+	grow to right by=5.5mm,
+	title={\textbf{Definition: {#1}}},
+	attach boxed title to top text left={yshift=-2mm},
+	boxed title style={size=small}
+}
+
+\newtcolorbox{tcthmbox}[1]{
+	enhanced,
+	breakable,
+	parbox=false,
+	coltext=black,
+	coltitle=white,
+	colframe=black,
+	colbacktitle=black,
+	grow to left by=5.5mm,
+	grow to right by=5.5mm,
+	title={\textbf{{#1}}},
+	attach boxed title to top text left={yshift=-2mm},
+	boxed title style={size=small}
+}
+
+\newenvironment{dfnbox}[1]{
+	\begin{tcdfnbox}{#1}
+	\setlength{\parskip}{0.25\baselineskip}
+}{
+	\end{tcdfnbox}
+}
+
+\newenvironment{thmbox}[1]{
+	\begin{tcthmbox}{#1}
+}{
+	\end{tcthmbox}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TEXT MACROS
+
+\newcommand{\dfntxt}[1]{{\textbf{\textit{#1}}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MATH MACROS
+
+\newcommand{\dd}{{\symrm{d}}}
+\newcommand{\alg}[1]{{\langle {#1} \rangle}}
+\DeclareMathOperator{\const}{const}
+\DeclareMathOperator{\Tr}{Tr}
