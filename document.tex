@@ -106,11 +106,11 @@ When dealing with more than one group in the same context, it is often helpful t
 		\item \dfntxt{Closed under inverses}: If $x \in H$, then $x^{-1} \in H$.
 		\item \dfntxt{Closed under products}: If $x, y \in H$, then $x \cdot y \in H$.
 	\end{dfnitems}
-	We write $H \le G$ to denote that $H$ is a subgroup of $\alg{G; 1, {}^{-1}, \cdot}$.
+	We write $H \le \alg{G; 1, {}^{-1}, \cdot}$ to denote that $H$ is a subgroup of $\alg{G; 1, {}^{-1}, \cdot}$.
 \end{dfnbox}
 
 \begin{thmbox}{Kernels are Subgroups}
-	\textbf{Theorem:} Let $\alg{G; 1_G, {}^{-1}_G, \cdot_G}$ and $\alg{H; 1_H, {}^{-1}_H, \cdot_H}$ be groups. If $f: G \to H$ is a group homomorphism, then $\ker f$ is a subgroup of $\alg{G; 1_G, {}^{-1}_G, \cdot_G}$.
+	\textbf{Theorem:} Let $\alg{G; 1_G, {}^{-1}_G, \cdot_G}$ and $\alg{H; 1_H, {}^{-1}_H, \cdot_H}$ be groups. If $f: G \to H$ is a group homomorphism, then $\ker f \le \alg{G; 1_G, {}^{-1}_G, \cdot_G}$.
 \tcblower
 	\textit{Proof:} We need to verify that $\ker f$ contains the identity, is closed under inverses, and is closed under products.
 	\begin{dfnitems}
@@ -220,7 +220,7 @@ In this chapter, we introduce a new class of algebraic structures, called rngs a
 	\end{dfnitems}
 \end{dfnbox}
 
-The key ingredient present in the definition of a rng is \dfntxt{distributivity}, which establishes a link between two different binary operations. We begin our study of rngs by proving a simple (but important!) result to demonstrate the utility of the distributive property.
+The key ingredient present in the definition of a rng is \dfntxt{distributivity}, which establishes a link between two different binary operations. We begin our study of rngs by proving a simple (but important) result to demonstrate the utility of the distributive property.
 
 \begin{thmbox}{Multiplying by Zero Yields Zero}
 	\textbf{Theorem:} Let $\alg{R; 0, -, +, \cdot}$ be a rng. For any $x \in R$, we have $0 \cdot x = x \cdot 0 = 0$.
@@ -229,6 +229,11 @@ The key ingredient present in the definition of a rng is \dfntxt{distributivity}
 \end{thmbox}
 
 \begin{dfnbox}{Subrng, $S \le R$}
+	Let $\alg{R; 0, -, +, \cdot}$ be a rng. A \dfntxt{subrng} of $\alg{R; 0, -, +, \cdot}$ is a subgroup $S \le \alg{R; 0, -, +}$ that satisfies the following additional requirement:
+	\begin{dfnitems}
+		\item \dfntxt{Closed under products}: If $x, y \in S$, then $x \cdot y$ in $S$.
+	\end{dfnitems}
+	We write $S \le R$ to indicate that $S$ is a subrng of $R$.
 \end{dfnbox}
 
 \begin{dfnbox}{Rng Homomorphism}
@@ -239,6 +244,8 @@ The key ingredient present in the definition of a rng is \dfntxt{distributivity}
 	\end{dfnitems}
 \end{dfnbox}
 
+Every rng homomorphism is also a group homomorphism, so the theory and terminology of group homomorphisms is immediately applicable to rng homomorphisms. For example, the kernel of a rng homomorphism $f: R \to S$ is still defined to be the set
+\[ \ker f \coloneq \{ x \in R : f(x) = 0_S \}. \]
 As with groups, we will often refer to a rng $\alg{R; 0, -, +, \cdot}$ by the name of its underlying set $R$ and denote the multiplication operation $\cdot$ by juxtaposition. We will never denote addition, subtraction, or negation by juxtaposition, so the symbols $+$ and $-$ will always be used.
 
 \begin{dfnbox}{Ideal, Left Ideal, Right Ideal, One-Sided Ideal, Two-Sided Ideal, $I \normalin R$}
@@ -262,6 +269,12 @@ Every two-sided ideal is also a one-sided ideal, but the converse is not true.
 
 \begin{thmbox}{Kernels are Ideals}
 	\textbf{Theorem:} If $f: R \to S$ is a rng homomorphism, then $\ker f \normalin R$.
+\tcblower
+	\textit{Proof:} By definition, a rng homomorphism $f: R \to S$ is also a group homomorphism, so we already know that $\ker f$ is a subgroup of $R$. To prove that $\ker f$ is an ideal, we must show that it absorbs multiplication. Let $r \in R$ and $x \in \ker f$ be given. It follows that
+	\[ f(rx) = f(r)f(x) = f(r)0 = 0
+	\qquad \text{and} \qquad
+	f(xr) = f(x)f(r) = 0f(r) = 0, \]
+	so we conclude that $rx \in \ker f$ and $xr \in \ker f$.
 \end{thmbox}
 
 \begin{dfnbox}{Ring}
@@ -278,6 +291,17 @@ Note that the distinguished elements $0$ and $1$ in the definition of a ring nee
 \tcblower
 	\textit{Proof:} For any $x \in R$, we have $x = 1 \cdot x = 0 \cdot x = 0$.
 \end{thmbox}
+
+\begin{dfnbox}{Subring}
+	Let $\alg{R; 0, 1, -, +, \cdot}$ be a ring. A \dfntxt{subring} of $\alg{R; 0, 1, -, +, \cdot}$ is a subrng $S \le \alg{R; 0, -, +, \cdot}$ that satisfies the following additional requirement:
+	\begin{dfnitems}
+		\item \dfntxt{Contains the identity}: $1 \in S$.
+	\end{dfnitems}
+\end{dfnbox}
+
+In these notes, we will only use the notation $S \le R$ for \textit{subrngs}, not \textit{subrings}. This ensures consistency with the notation $I \normalin R$ for ideals (i.e., $I \normalin R \implies I \le R$), since an ideal is always a subrng, but not necessarily a subring.
+
+The distinction between subrngs and subrings is subtle and can easily lead to confusion if these terms are not used carefully. For example, if $R$ is a ring and $S \le R$ is a subrng, it is possible for $S$ to be a ring in its own right without being a \textit{subring} of $R$. Consider $\Z \times \{0\} \le \Z \times \Z$; both of these rngs are rings, with identity elements $(1, 0) \in \Z \times \{0\}$ and $(1, 1) \in \Z \times \Z$. However, $\Z \times \{0\}$ is \textit{not} a subring of $\Z \times \Z$ because $(1, 1) \notin \Z \times \{0\}$. A subring \textit{must} contain the identity element of the original ring.
 
 \begin{dfnbox}{Inverse, Left Inverse, Right Inverse, Two-Sided Inverse, Invertible, Unit}
 	Let $\alg{R; 0, 1, -, +, \cdot}$ be a ring, and let $x \in R$.
@@ -327,6 +351,19 @@ Using this notation, we can restate the preceding result as $x = (x^{-1})^{-1}$ 
 	\begin{dfnitems}
 		\item \dfntxt{Commutativity}: $x \cdot y = y \cdot x$ for all $x, y \in R$.
 	\end{dfnitems}
+\end{dfnbox}
+
+\begin{dfnbox}{Zero Divisor, Left Zero Divisor, Right Zero Divisor, Two-Sided Zero Divisor}
+	Let $R$ be a rng.
+\end{dfnbox}
+
+\begin{dfnbox}{Domain}
+\end{dfnbox}
+
+\begin{dfnbox}{Integral Domain}
+\end{dfnbox}
+
+\begin{dfnbox}{Euclidean Domain}
 \end{dfnbox}
 
 
@@ -410,6 +447,13 @@ Note that the individual fields $K$ and $L$ involved in a finite extension $L/K$
 	\textit{Proof:} If $p$ could be written as the product of two non-constant polynomials $q, r \in K[x]$, then $0 = p(\alpha) = q(\alpha) r(\alpha)$ would imply that $q(\alpha) = 0$ or $r(\alpha) = 0$, contradicting the minimality of $p$.
 \end{thmbox}
 
+\begin{dfnbox}{Annihilator Ideal}
+	Let $L/K$ be a field extension. The \dfntxt{annihilator ideal} of an element $\alpha \in L$ over $K$ is the subset of $K[x]$
+\end{dfnbox}
+
+\begin{thmbox}{Minimal Polynomial Divides Every Other Polynomial}
+\end{thmbox}
+
 \begin{dfnbox}{Finite Field}
 	A \dfntxt{finite field} is a field whose underlying set has finite cardinality.
 \end{dfnbox}
@@ -422,7 +466,7 @@ Note that the individual fields $K$ and $L$ involved in a finite extension $L/K$
 	A field extension $L/K$ is called a \dfntxt{simple extension} if there exists an element $\alpha \in L$ such that $L = K(\alpha)$, i.e., every element of $L$ can be expressed as a rational function of $\alpha$ with coefficients in $K$. Such an element $\alpha$ is called a \dfntxt{primitive element} of $L$ over $K$.
 \end{dfnbox}
 
-\begin{dfnbox}
+\begin{dfnbox}{}
 	Let $L/K$ be a field extension.
 \end{dfnbox}
 
