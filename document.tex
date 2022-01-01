@@ -76,7 +76,7 @@
 When dealing with more than one group in the same context, it is often helpful to label the identity elements, inversion operations, and product operations by the name of the group they belong to. For example, instead of naming the elements of a group $\alg{G; 1, {}^{-1}, \cdot}$, we might choose to name them $\alg{G; 1_G, {}^{-1}_G, \cdot_G}$.
 
 \begin{dfnbox}{Group Homomorphism}
-	Let $\alg{G; 1_G, {}^{-1}_G, \cdot_G}$ and $\alg{H; 1_H, {}^{-1}_H, \cdot_H}$ be groups. A \dfntxt{group homomorphism} is a function $f: G \to H$ satisfying the following requirements:
+	Let $\alg{G; 1_G, {}^{-1}_G, \cdot_G}$ and $\alg{H; 1_H, {}^{-1}_H, \cdot_H}$ be groups. A \dfntxt{group homomorphism} is a function $f: G \to H$ that satisfies the following requirements:
 	\begin{dfnitems}
 		\item \dfntxt{Preserves the identity}: $f(1_G) = 1_H$.
 		\item \dfntxt{Preserves inverses}: $f(x^{-1}_G) = f(x)^{-1}_H$ for all $x \in G$.
@@ -164,17 +164,18 @@ When dealing with more than one group in the same context, it is often helpful t
 	\[ (x^g)^h = h^{-1} (x^g) h = h^{-1} g^{-1} x g x = (gh)^{-1} x (gh) = x^{gh} \]
 \end{thmbox}
 
-\begin{dfnbox}{Normal Subgroup, $H \normalin G$}
-	Let $G$ be a group. A \dfntxt{normal subgroup} of $\alg{G; 1, {}^{-1}, \cdot}$ is a subgroup $N \le G$ that satisfies the following additional requirement:
+\begin{dfnbox}{Normal Subgroup, $N \normalin G$}
+	Let $G$ be a group. A \dfntxt{normal subgroup} of $G$ is a subgroup $N \le G$ that satisfies the following additional requirement:
 	\begin{dfnitems}
 		\item \dfntxt{Closed under conjugation}: If $g \in G$ and $x \in N$, then $x^g \in N$.
 	\end{dfnitems}
+	We write $N \normalin G$ to denote that $N$ is a normal subgroup of $G$.
 \end{dfnbox}
 
 \begin{dfnbox}{Abelian Group}
-	An \dfntxt{abelian group} is a group $\alg{G; 1, {}^{-1}, \cdot}$ that satisfies the following additional requirement:
+	An \dfntxt{abelian group} is a group $G$ that satisfies the following additional requirement:
 	\begin{dfnitems}
-		\item \dfntxt{Commutative property}: $x \cdot y = y \cdot x$ for all $x, y \in G$.
+		\item \dfntxt{Commutative property}: $x y = y x$ for all $x, y \in G$.
 	\end{dfnitems}
 \end{dfnbox}
 
@@ -204,12 +205,48 @@ In this chapter, we introduce a new class of algebraic structures, called rngs a
 	\end{dfnitems}
 \end{dfnbox}
 
-The key ingredient present in the definition of a rng is \dfntxt{distributivity}, which establishes a link between two different binary operations. We will begin our study of rngs by proving a simple (but important!) result to demonstrate the use of the distributive property.
+The key ingredient present in the definition of a rng is \dfntxt{distributivity}, which establishes a link between two different binary operations. We begin our study of rngs by proving a simple (but important!) result to demonstrate the utility of the distributive property.
 
 \begin{thmbox}{Multiplying by Zero Yields Zero}
 	\textbf{Theorem:} Let $\alg{R; 0, -, +, \cdot}$ be a rng. For any $x \in R$, we have $0 \cdot x = x \cdot 0 = 0$.
 \tcblower
-	\textit{Proof:} Let $x \in R$ be arbitrary. Because $0$ is the identity element of the abelian group $\langle R; 0, -, + \rangle$, we can write $0 = 0 + 0$. Using left distributivity, it follows that $0 \cdot x = (0 + 0) \cdot x = (0 \cdot x) + (0 \cdot x)$, and by canceling one copy of $0 \cdot x$ on both sides, we conclude that $0 \cdot x = 0$. We similarly apply right distributivity to the expression $x \cdot 0 = x \cdot (0 + 0) = (x \cdot 0) + (x \cdot 0)$ to conclude that $x \cdot 0 = 0$.
+	\textit{Proof:} Let $x \in R$ be given. Because $0$ is the identity element of the abelian group $\langle R; 0, -, + \rangle$, we have $0 = 0 + 0$. Using left distributivity, it follows that $0 \cdot x = (0 + 0) \cdot x = (0 \cdot x) + (0 \cdot x)$, and by canceling one copy of $0 \cdot x$ on both sides, we conclude that $0 \cdot x = 0$. We similarly apply right distributivity to the expression $x \cdot 0 = x \cdot (0 + 0) = (x \cdot 0) + (x \cdot 0)$ to conclude that $x \cdot 0 = 0$.
+\end{thmbox}
+
+\begin{dfnbox}{Subrng, $S \le R$}
+\end{dfnbox}
+
+\begin{dfnbox}{Rng Homomorphism}
+	Let $\alg{R; 0_R, -_R +_R, \cdot_R}$ and $\alg{S; 0_S, -_S +_S, \cdot_S}$ be rngs. A \dfntxt{rng homomorphism} is a function $f: R \to S$ that satisfies the following requirements:
+	\begin{dfnitems}
+		\item \dfntxt{Preserves additive structure}: $f$ is a group homomorphism between the abelian groups $\alg{R; 0_R, -_R +_R}$ and $\alg{S; 0_S, -_S +_S}$.
+		\item \dfntxt{Preserves products}: $f(x \cdot_R y) = f(x) \cdot_S f(y)$ for all $x, y \in R$.
+	\end{dfnitems}
+\end{dfnbox}
+
+As with groups, we will often refer to a rng $\alg{R; 0, -, +, \cdot}$ by the name of its underlying set $R$ and denote the multiplication operation $\cdot$ by juxtaposition. We will never denote addition, subtraction, or negation by juxtaposition, so the symbols $+$ and $-$ will always be used.
+
+\begin{dfnbox}{Ideal, Left Ideal, Right Ideal, One-Sided Ideal, Two-Sided Ideal, $I \normalin R$}
+	Let $R$ be a rng.
+	\begin{dfnitems}
+		\item A \dfntxt{left ideal} of $R$ is a subrng $I \le R$ that satisfies the following additional requirement:
+		\begin{dfnitems}
+			\item \dfntxt{Absorbs left multiplication}: $rx \in I$ for all $r \in R$ and $x \in I$.
+		\end{dfnitems}
+		\item A \dfntxt{right ideal} of $R$ is a subrng $I \le R$ that satisfies the following additional requirement:
+		\begin{dfnitems}
+			\item \dfntxt{Absorbs right multiplication}: $xr \in I$ for all $x \in I$ and $r \in R$.
+		\end{dfnitems}
+		\item A \dfntxt{one-sided ideal} of $R$ is a subrng $I \le R$ that is a left ideal or a right ideal (possibly both).
+		\item A \dfntxt{two-sided ideal} of $R$, or simply an \dfntxt{ideal} of $R$, is a subrng $I \le R$ that is both a left ideal and a right ideal.
+	\end{dfnitems}
+	We write $I \normalin R$ to denote that $I$ is a (two-sided) ideal of $R$.
+\end{dfnbox}
+
+Every two-sided ideal is also a one-sided ideal, but the converse is not true.
+
+\begin{thmbox}{Kernels are Ideals}
+	\textbf{Theorem:} If $f: R \to S$ is a rng homomorphism, then $\ker f \normalin R$.
 \end{thmbox}
 
 \begin{dfnbox}{Ring}
@@ -263,7 +300,11 @@ This result allows us to speak unambiguously of \textit{the} inverse of an inver
 Using this notation, we can restate the preceding result as $x = (x^{-1})^{-1}$ for all $x \in R^\times$.
 
 \begin{thmbox}{$R^\times$ is a Group}
-	If $\alg{R; 0, 1, -, +, \cdot}$ is a ring, then $\alg{R^\times; 1, {}^{-1}, \cdot}$ is a group.
+	\textbf{Theorem:} If $\alg{R; 0, 1, -, +, \cdot}$ is a ring, then $\alg{R^\times; 1, {}^{-1}, \cdot}$ is a group.
+\end{thmbox}
+
+\begin{thmbox}{An Ideal that Contains a Unit is the Entire Ring}
+	\textbf{Theorem:} Let $R$ be a ring. If $I \le R$ is a one-sided ideal that contains a unit, then $I = R$.
 \end{thmbox}
 
 \begin{dfnbox}{Commutative Ring}
@@ -278,17 +319,25 @@ Using this notation, we can restate the preceding result as $x = (x^{-1})^{-1}$ 
 \chapter{Field Theory}
 
 \begin{dfnbox}{Field}
-	A \dfntxt{field} is a commutative ring $\alg{K; 0, 1, -, +, \cdot}$ in which $0 \ne 1$ and every nonzero element is invertible, i.e., $K^\times = K \setminus \{0\}$.
+	A \dfntxt{field} is a commutative ring $\alg{K; 0, 1, -, +, \cdot}$ that satisfies the following additional requirements:
+	\begin{dfnitems}
+		\item \dfntxt{Nontriviality}: $0 \ne 1$.
+		\item \dfntxt{Invertibility}: Every element of $K \setminus \{0\}$ has a (two-sided) inverse, i.e., $K^\times = K \setminus \{0\}$.
+	\end{dfnitems}
 \end{dfnbox}
-
-Because of the requirement that $0 \ne 1$, all fields must contain at least two distinct elements.
 
 We now prove a crucial fact that markedly distinguishes field theory from group theory and ring theory.
 
-\begin{thmbox}{Every Field Homomorphism is a Monomorphism}
-	\textbf{Theorem:} Every ring homomorphism $f: K \to R$ from a field $K$ to a ring $R$ is injective.
+\begin{thmbox}{Fields Have Two Ideals}
+	\textbf{Theorem:} Let $K$ be a field. If $I \le K$ is a one-sided ideal, then either $I = \{0\}$ or $I = K$.
 \tcblower
-	\textit{Proof:}
+	\textit{Proof:} A one-sided ideal $I \le K$ must contain $0$ by definition. If $I$ contains any other element of $K$, then $I$ contains a unit, and hence contains every element of $K$.
+\end{thmbox}
+
+\begin{thmbox}{Every Field Homomorphism is a Monomorphism}
+	\textbf{Theorem:} Every rng homomorphism $f: K \to R$ from a field $K$ to a rng $R$ is either injective or trivial (i.e., $f(x) = 0$ for all $x \in K$).
+\tcblower
+	\textit{Proof:} Either $\ker f = \{0\}$, in which case $f$ is injective, or $\ker f = K$, in which case $f$ is trivial.
 \end{thmbox}
 
 
