@@ -28,7 +28,7 @@
 
 \begin{thmbox}{Constants Form a Subrng}
 	\textbf{Theorem:} If $R$ is a differential rng, then $\const(R) \le R$.
-	\tcblower
+\tcblower
 	\textit{Proof:} It suffices to show that $\const(R)$ is closed under sums and products. Let $x, y \in \const(R)$.
 	\[ \dd(x + y) = \dd(x) + \dd(y) = 0 + 0 = 0 \implies x + y \in \const(R) \]
 	\[ \dd(x \cdot y) = \dd(x) \cdot y + x \cdot \dd(y) = 0 \cdot y + x \cdot 0 = 0 \implies x \cdot y \in \const(R) \]
@@ -56,7 +56,7 @@ The terms \dfntxt{differential integral domain}, \dfntxt{differential PID}, \dfn
 
 \begin{thmbox}{$1$ is a Constant}
 	\textbf{Theorem:} In any differential ring, $\dd(1) = 0$.
-	\tcblower
+\tcblower
 	\textit{Proof:} We apply the Leibniz rule to $1 = 1 \cdot 1$.
 	\[ \dd(1) = \dd(1 \cdot 1) = \dd(1) \cdot 1 + 1 \cdot \dd(1) = \dd(1) + \dd(1) \]
 	By cancellation, this implies that $\dd(1) = 0$.
@@ -66,7 +66,7 @@ This result implies that the \textit{subrng} of constants of a differential ring
 
 \begin{thmbox}{Algebraic Extensions Don't Create Antiderivatives}
 	\textbf{Theorem:} Let $K$ be a differential field of characteristic zero. If $f \in K$ does not have an antiderivative in $K$, then $f$ cannot have an antiderivative in any algebraic differential extension of $K$.
-	\tcblower
+\tcblower
 	\textit{Proof:} We proceed by contraposition. Suppose that there exists an algebraic differential extension $L/K$ having an element $g \in L$ for which $f = \dd(g)$. Let $\Tr: K[g] \to K$ denote the trace map, and recall that $\Tr$ commutes with $\dd$. Since $f \in K$, we have $\Tr(f) = nf$, where $n \coloneq [K[g] : K]$. It follows that
 	\[ \dd \left( \frac{\Tr(g)}{n} \right) = \frac{1}{n} \dd(\Tr(g)) = \frac{1}{n} \Tr(\dd(g)) = \frac{1}{n} \Tr(f) = f \]
 	which shows that $\Tr(g)/n \in K$ is an antiderivative of $f$.

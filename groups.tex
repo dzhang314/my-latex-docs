@@ -27,7 +27,7 @@
 		\item \dfntxt{Left cancellation law}: If $x \cdot y = x \cdot z$, then $y = z$.
 		\item \dfntxt{Right cancellation law}: If $x \cdot z = y \cdot z$, then $x = y$.
 	\end{dfnitems}
-	\tcblower
+\tcblower
 	\textit{Proof:} If $x \cdot y = x \cdot z$, then:
 	\begin{align*}
 		y & = 1 \cdot y                &  & \text{(identity property)}    \\
@@ -44,7 +44,7 @@
 
 \begin{thmbox}{Uniqueness of Inverses} \label{grpuniq}
 	\textbf{Theorem:} Let $\alg{G; 1, {}^{-1}, \cdot}$ be a group, and let $x, y \in G$. If $x \cdot y = 1$ or $y \cdot x = 1$, then $y = x^{-1}$.
-	\tcblower
+\tcblower
 	\textit{Proof:} If $x \cdot y = 1$, then
 	\[ y = 1 \cdot y = (x^{-1} \cdot x) \cdot y = x^{-1} \cdot (x \cdot y) = x^{-1} \cdot 1 = x^{-1}. \]
 	Similarly, if $y \cdot x = 1$, then
@@ -53,13 +53,13 @@
 
 \begin{thmbox}{Inversion is an Involution}
 	\textbf{Theorem:} Let $\alg{G; 1, {}^{-1}, \cdot}$ be a group. For all $x \in G$, we have $(x^{-1})^{-1} = x$.
-	\tcblower
+\tcblower
 	\textit{Proof:} By the uniqueness of inverses, in order to show that $x$ is the inverse of $x^{-1}$, it suffices to show that $x \cdot x^{-1} = 1$. This is guaranteed by the inverse property.
 \end{thmbox}
 
 \begin{thmbox}{Identity Element is its own Inverse}
 	\textbf{Theorem:} If $\alg{G; 1, {}^{-1}, \cdot}$ is a group, then $1^{-1} = 1$.
-	\tcblower
+\tcblower
 	\textit{Proof:} By the uniqueness of inverses, in order to show that $1$ is its own inverse, it suffices to show that $1 \cdot 1 = 1$. This is guaranteed by the identity property.
 \end{thmbox}
 
@@ -76,7 +76,7 @@ When dealing with more than one group in the same context, it is often helpful t
 
 \begin{thmbox}{Preserving Products is Sufficient}
 	\textbf{Theorem:} Let $\alg{G; 1_G, {}^{-1}_G, \cdot_G}$ and $\alg{H; 1_H, {}^{-1}_H, \cdot_H}$ be groups. If a function $f: G \to H$ satisfies $f(x \cdot_G y) = f(x) \cdot_H f(y)$ for all $x, y \in G$, then $f$ is a group homomorphism.
-	\tcblower
+\tcblower
 	\textit{Proof:} We must show that $f$ preserves the identity and inverses. For preservation of the identity, we apply preservation of products to the equation $1_G = 1_G \cdot_G 1_G$ to conclude that
 	\[ f(1_G) = f(1_G \cdot_G 1_G) = f(1_G) \cdot_H f(1_G). \]
 	By cancellation, it follows that $f(1_G) = 1_H$. For preservation of inverses, let $x \in G$ be given. Since $1_G = x \cdot_G x^{-1}_G$, we can apply preservation of products and the identity to write
@@ -101,7 +101,7 @@ When dealing with more than one group in the same context, it is often helpful t
 
 \begin{thmbox}{Kernels are Subgroups}
 	\textbf{Theorem:} Let $\alg{G; 1_G, {}^{-1}_G, \cdot_G}$ and $\alg{H; 1_H, {}^{-1}_H, \cdot_H}$ be groups. If $f: G \to H$ is a group homomorphism, then $\ker f \le \alg{G; 1_G, {}^{-1}_G, \cdot_G}$.
-	\tcblower
+\tcblower
 	\textit{Proof:} We need to verify that $\ker f$ contains the identity, is closed under inverses, and is closed under products.
 	\begin{dfnitems}
 		\item A homomorphism must preserve the identity, i.e., $f(1_G) = 1_H$, so $1_G \in \ker f$.
@@ -123,7 +123,7 @@ When dealing with more than one group in the same context, it is often helpful t
 
 \begin{thmbox}{Inverse of a Product is the Reverse Product of Inverses}
 	\textbf{Theorem:} Let $G$ be a group and $n \in \N$. If $x_1, \dots, x_n \in G$, then $(x_1 x_2 \cdots x_n)^{-1} = x_n^{-1} \cdots x_2^{-1} x_1^{-1}$.
-	\tcblower
+\tcblower
 	\textit{Proof:} By the uniqueness of inverses, it suffices to show that $x_1 x_2 \cdots x_n x_n^{-1} \cdots x_2^{-1} x_1^{-1} = 1$. We proceed by induction on $n$. The base case $n = 1$ holds by the inverse property $x_1 x_1^{-1} = 1$. Supposing that the claim holds for $n = k$, we establish the claim for $n = k + 1$ by calculating as follows:
 	\[ x_1 x_2 \cdots x_k x_{k+1} x_{k+1}^{-1} x_k^{-1} \cdots x_2^{-1} x_1^{-1} = x_1 x_2 \cdots x_k x_k^{-1} \cdots x_2^{-1} x_1^{-1} = 1 \]
 	The first equality follows from the inverse property $x_{k+1} x_{k+1}^{-1} = 1$, and the second equality follows from the inductive hypothesis.
@@ -145,7 +145,7 @@ When dealing with more than one group in the same context, it is often helpful t
 		\item ${}^{g} ({}^{h} x) = {}^{gh} x$
 		\item $(x^g)^h = x^{gh}$
 	\end{dfnitems}
-	\tcblower
+\tcblower
 	\textit{Proof:} Let $g, h, x \in G$ be given.
 	\[ {}^1 x = 1 x 1^{-1} = x1 = x = 1x = 1^{-1} x 1 = x^1 \]
 	\[ {}^{g^{-1}} x = g^{-1} x (g^{-1})^{-1} = g^{-1} x g = x^g \]

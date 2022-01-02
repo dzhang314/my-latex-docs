@@ -47,13 +47,13 @@ We now prove a crucial fact that markedly distinguishes field theory from group 
 
 \begin{thmbox}{Fields Have Two Ideals}
 	\textbf{Theorem:} Let $K$ be a field. If $I \le K$ is a one-sided ideal, then either $I = \{0\}$ or $I = K$.
-	\tcblower
+\tcblower
 	\textit{Proof:} A one-sided ideal $I \le K$ must contain $0$ by definition. If $I$ contains any other element of $K$, then $I$ contains a unit, and hence contains every element of $K$.
 \end{thmbox}
 
 \begin{thmbox}{Every Field Homomorphism is a Monomorphism}
 	\textbf{Theorem:} Every rng homomorphism $f: K \to R$ from a field $K$ to a rng $R$ is either injective or trivial (i.e., $f(x) = 0$ for all $x \in K$).
-	\tcblower
+\tcblower
 	\textit{Proof:} Either $\ker f = \{0\}$, in which case $f$ is injective, or $\ker f = K$, in which case $f$ is trivial.
 \end{thmbox}
 
@@ -90,7 +90,7 @@ Note that the individual fields $K$ and $L$ involved in a finite extension $L/K$
 
 \begin{thmbox}{Minimal Polynomials Exist}
 	\textbf{Theorem:} Let $L/K$ be a field extension. If $\alpha \in L$ is algebraic over $K$, then there exists a unique monic polynomial in $K[x]$ of minimal degree satisfying $p(\alpha) = 0$.
-	\tcblower
+\tcblower
 	\textit{Proof:} The existence of such a polynomial is clear, since by the hypothesis that $\alpha$ is algebraic over $K$, there exists a polynomial $p \in K[x]$ satisfying $p(\alpha) = 0$. (This polynomial can be made monic by dividing it by its leading coefficient.) Because the degrees of monic polynomials (i.e., natural numbers) are well-ordered, we can conclude that there exists a minimal-degree monic polynomial having this property.
 
 	We verify uniqueness by contradiction. Suppose that there exist two distinct monic polynomials $p, q \in K[x]$ of minimal degree that satisfy $p(\alpha) = q(\alpha) = 0$. It follows that $p-q \in K[x]$ is a polynomial of strictly smaller degree that satisfies $(p-q)(\alpha) = p(\alpha) - q(\alpha) = 0 - 0 = 0$, contradicting the minimality of $p$ and $q$.
@@ -102,7 +102,7 @@ Note that the individual fields $K$ and $L$ involved in a finite extension $L/K$
 
 \begin{thmbox}{Minimal Polynomials are Irreducible}
 	\textbf{Theorem:} Let $L/K$ be a field extension. If $p \in K[x]$ is the minimal polynomial of an algebraic element $\alpha \in L$, then $p$ is irreducible in $K[x]$.
-	\tcblower
+\tcblower
 	\textit{Proof:} If $p$ could be written as the product of two non-constant polynomials $q, r \in K[x]$, then $0 = p(\alpha) = q(\alpha) r(\alpha)$ would imply that $q(\alpha) = 0$ or $r(\alpha) = 0$, contradicting the minimality of $p$.
 \end{thmbox}
 
@@ -127,7 +127,7 @@ Note that the individual fields $K$ and $L$ involved in a finite extension $L/K$
 
 \begin{thmbox}{Primitive Element Theorem}
 	\textbf{Theorem:} Let $K$ be a field. A finite extension $L/K$ is simple if and only if there exist finitely many intermediate subfields $F$ satisfying $K \le F \le L$.
-	\tcblower
+\tcblower
 	\textit{Proof:} We first consider the case of a finite base field $K$. In this case, the extension field $L$, being a finite extension of a finite field, is also finite. This implies that both sides of the desired ``if and only if'' statement are true. In particular, $L$ has finitely many subfields, and $L^\times$ is a cyclic group, so its generator is a primitive element.
 
 	Now suppose that the base field $K$ is infinite. There are two implications that need to be proven.

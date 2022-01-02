@@ -29,7 +29,7 @@ The key ingredient present in the definition of a rng is \dfntxt{distributivity}
 
 \begin{thmbox}{Multiplying by Zero Yields Zero}
 	\textbf{Theorem:} Let $\alg{R; 0, -, +, \cdot}$ be a rng. For any $x \in R$, we have $0 \cdot x = x \cdot 0 = 0$.
-	\tcblower
+\tcblower
 	\textit{Proof:} Let $x \in R$ be given. Because $0$ is the identity element of the abelian group $\langle R; 0, -, + \rangle$, we have $0 = 0 + 0$. Using left distributivity, it follows that $0 \cdot x = (0 + 0) \cdot x = (0 \cdot x) + (0 \cdot x)$, and by canceling one copy of $0 \cdot x$ on both sides, we conclude that $0 \cdot x = 0$. We similarly apply right distributivity to the expression $x \cdot 0 = x \cdot (0 + 0) = (x \cdot 0) + (x \cdot 0)$ to conclude that $x \cdot 0 = 0$.
 \end{thmbox}
 
@@ -80,7 +80,7 @@ Every two-sided ideal is also a one-sided ideal, but the converse is not true.
 
 \begin{thmbox}{Kernels are Ideals}
 	\textbf{Theorem:} If $f: R \to S$ is a rng homomorphism, then $\ker f \normalin R$.
-	\tcblower
+\tcblower
 	\textit{Proof:} By definition, a rng homomorphism $f: R \to S$ is also a group homomorphism, so we already know that $\ker f$ is a subgroup of $R$. To prove that $\ker f$ is an ideal, we must show that it absorbs multiplication. Let $r \in R$ and $x \in \ker f$ be given. It follows that
 	\[ f(rx) = f(r)f(x) = f(r)0 = 0
 	\qquad \text{and} \qquad
@@ -107,11 +107,11 @@ Note that the terms ``ideal'' and ``zero divisor'' have opposite usage conventio
 	\end{dfnitems}
 \end{dfnbox}
 
-Note that the distinguished elements $0$ and $1$ in the definition of a ring need not be distinct. There is one ring in which $0 = 1$ holds.
+In order to distinguish the identity element $1$ from the zero element $0$, we sometimes call $1$ the \dfntxt{multiplicative identity element} and $0$ the \dfntxt{additive identity element}. These elements need not be distinct; in fact, there is one ring in which $0 = 1$ holds.
 
 \begin{thmbox}{$0 \ne 1$ in any Nontrivial Ring}
 	\textbf{Theorem:} Let $\alg{R; 0, 1, -, +, \cdot}$ be a ring. If $0 = 1$, then $R = \{0\}$.
-	\tcblower
+\tcblower
 	\textit{Proof:} For any $x \in R$, we have $x = 1 \cdot x = 0 \cdot x = 0$.
 \end{thmbox}
 
@@ -139,7 +139,7 @@ In ring theory, the word ``inverse'' used without further elaboration usually me
 
 \begin{thmbox}{Left and Right Invertibility Imply Two-Sided Invertibility}
 	\textbf{Theorem:} Let $\alg{R; 0, 1, -, +, \cdot}$ be a ring. If $x \in R$ has both a left inverse $y \in R$ and a right inverse $z \in R$, then $y = z$, and $x$ is invertible.
-	\tcblower
+\tcblower
 	\textit{Proof:} Using the associativity of multiplication, observe that
 	\[ y = y \cdot 1 = y \cdot (x \cdot z) = (y \cdot x) \cdot z = 1 \cdot z = z. \]
 	Hence, $y = z$ is a two-sided inverse of $x$.
@@ -147,7 +147,7 @@ In ring theory, the word ``inverse'' used without further elaboration usually me
 
 \begin{thmbox}{Inverses are Unique and Invertible}
 	\textbf{Corollary:} Let $\alg{R; 0, 1, -, +, \cdot}$ be a ring. If an element $x \in R$ is invertible, then it has a unique inverse. Moreover, that inverse is itself invertible, and $x$ is its unique inverse.
-	\tcblower
+\tcblower
 	\textit{Proof:} Let $y,z \in R$ be (two-sided) inverses of $x$. In particular, $y$ is a left inverse of $x$, and $z$ is a right inverse of $x$, so we can apply the preceding result to conclude that $y = z$.
 
 	Observe that the relation $x \cdot y = y \cdot x = 1$ that defines inverses is symmetric in $x$ and $y$. Hence, if $y$ is an inverse of $x$, then $x$ is also an inverse of $y$.
@@ -163,6 +163,21 @@ Using this notation, we can restate the preceding result as $x = (x^{-1})^{-1}$ 
 
 \begin{thmbox}{$R^\times$ is a Group}
 	\textbf{Theorem:} If $\alg{R; 0, 1, -, +, \cdot}$ is a ring, then $\alg{R^\times; 1, {}^{-1}, \cdot}$ is a group.
+\end{thmbox}
+
+\begin{thmbox}{In the Absence of Zero Divisors, $xy = 1 \implies yx = 1$}
+	\textbf{Theorem:} Let $R$ be a ring, and let $x, y \in R$. If $xy = 1$, and at least one of the following conditions holds:
+	\begin{dfnitems}
+		\item $x$ is not a left zero divisor.
+		\item $y$ is not a right zero divisor.
+	\end{dfnitems}
+	then $yx = 1$.
+\tcblower
+	\textit{Proof:} Observe that $xy = 1$ implies $xy - 1 = 0$, and hence that
+	\[ 0 = (xy - 1)x = xyx - x = x(yx - 1). \]
+	If $x$ is not a left zero divisor, then we can conclude that $yx = 1$. Similarly, we also have
+	\[ 0 = y(xy - 1) = yxy - y = (yx - 1)y. \]
+	If $y$ is not a right zero divisor, then we can conclude that $yx = 1$.
 \end{thmbox}
 
 \begin{thmbox}{An Ideal that Contains a Unit Contains Everything}
@@ -202,12 +217,22 @@ The divisibility relation $\mid$ is always reflexive in a ring, but can fail to 
 
 \begin{thmbox}{Divisibility is Transitive}
 	\textbf{Theorem:} The divisibility relation on any rng is transitive.
-	\tcblower
+\tcblower
 	\textit{Proof:} Let $R$ be a rng, and let $a, b, c \in R$. If $a \mid b$ and $b \mid c$, then there exist $x, y \in R$ such that $b = xa$ and $c = yb$. It follows that $c = yxa$, which proves that $a \mid c$.
 \end{thmbox}
 
+\begin{dfnbox}{Prime Element}
+	Let $R$ be a commutative ring. An element $p \in R$ is \dfntxt{prime} if $p \ne 0$, $p \notin R^\times$, and for all $a, b \in R$, if $p \mid ab$, then $p \mid a$ or $p \mid b$.
+\end{dfnbox}
+
+\begin{dfnbox}{Irreducible Element}
+	Let $R$ be a ring. An element $r \in R$ is \dfntxt{irreducible} if $r \notin R^\times$ and for all $a, b \in R$, if $r = ab$, then $a \in R^\times$ or $b \in R^\times$.
+\end{dfnbox}
+
+Note that $0$ is never an irreducible element of a ring, since $0 = 0 \cdot 0$.
+
 \begin{dfnbox}{Euclidean Valuation}
-	A \dfntxt{Euclidean valuation} on a commutative ring $R$ is a function $\nu: R \setminus \{0\} \to W$ into a well-ordered set $(W, \le)$ that has the following property: for all $a, b \in R$, if $b \ne 0$, then either $b \mid a$, or there exist $q, r \in R$ with $r \ne 0$ and $\nu(r) < \nu(b)$ such that $a = qb + r$.
+	A \dfntxt{Euclidean valuation} on a commutative rng $R$ is a function $\nu: R \setminus \{0\} \to W$ into a well-ordered set $(W, \le)$ that has the following property: for all $a, b \in R$, if $b \ne 0$, then there exist $q, r \in R$ such that $a = qb + r$ and either $r = 0$ or $\nu(r) < \nu(b)$.
 \end{dfnbox}
 
 \begin{dfnbox}{Euclidean Domain, ED}
@@ -216,11 +241,21 @@ The divisibility relation $\mid$ is always reflexive in a ring, but can fail to 
 
 This complicated definition formalizes a simple idea: a Euclidean domain is a set in which it is possible to divide two elements with remainder. In any commutative ring, it is possible to define a completely unhelpful division-with-remainder operation by declaring $a$ divided by $b$ to have quotient $0$ and remainder $a$. In order for this operation to make useful progress, the remainder $r$ has to be, in some sense, ``smaller'' than the divisor $b$.
 
-A Euclidean valuation formalizes this notion by requiring that $\nu(r) < \nu(b)$. The actual values taken by the function $\nu$ are completely unimportant, as long as they exist in a set that does not contain an infinite descending chain $\nu(x_1) > \nu(x_2) > \cdots$. This guarantees that repeated division with remainder (as performed in the Euclidean algorithm) always terminates in a finite number of steps.
+A Euclidean valuation formalizes this notion by requiring that $r = 0$ or $\nu(r) < \nu(b)$. The actual values taken by the function $\nu$ are completely unimportant, as long as they exist in a set that does not contain an infinite descending chain $\nu(x_1) > \nu(x_2) > \cdots$. This guarantees that repeated division with remainder (as performed in the Euclidean algorithm) always terminates in a finite number of steps.
+
+\begin{thmbox}{Euclidean Valuation Implies Existence of Identity}
+	\textbf{Theorem:} Let $R$ be a commutative rng. If $R$ admits a Euclidean valuation, then $R$ contains a multiplicative identity element.
+\tcblower
+	\textit{Proof:} If $R = \{0\}$, then $0$ is a multiplicative identity. Otherwise, let $\nu: R \setminus \{0\} \to W$ be a Euclidean valuation on $R$ for some well-ordered set $W$, and choose an element $a \in R \setminus \{0\}$ that minimizes $\nu(a)$. (The well-ordering of $W$ guarantees that such an element exists.)
+
+	We claim that every element of $R$ is a multiple of $a$. Indeed, let $x \in R$ be given. By definition, $a \ne 0$, so there exist $q, r \in R$ such that $x = qa + r$ and either $r = 0$ or $\nu(r) < \nu(a)$. The latter would contradict the minimality of $\nu(a)$, so it must be the case that $r = 0$. Hence, $x = qa$ is a multiple of $a$.
+
+	Having established that every element of $R$ is a multiple of $a$, it follows that $a$ itself is a multiple of $a$. Thus, there exists $i \in R$ such that $a = ia$. We claim that $i$ is the desired multiplicative identity. To see this, let $x \in R$ be arbitrary, and write $x = ra$ for some $r \in R$. It follows that $ix = ira = ria = ra = x$, as desired.
+\end{thmbox}
 
 \begin{thmbox}{Every ED is a PID}
 	\textbf{Theorem:} Every Euclidean domain is a principal ideal domain.
-	\tcblower
+\tcblower
 	\textit{Proof:} Let $R$ be a Euclidean domain, and let an ideal $I \normalin R$ be given. If $I = \{0\}$, then $I$ is the principal ideal generated by $0$. Otherwise, let $\nu: R \setminus \{0\} \to W$ be a Euclidean valuation on $R$ for some well-ordered set $W$. Choose an element $b \in I \setminus \{0\}$ that minimizes $\nu(b)$. (The well-ordering of $W$ guarantees that such an element exists.)
 
 	We claim that $I = \gen{b}$. It is clear that $\gen{b} \subseteq I$, since an ideal $I$ must contain all multiples of an element $b \in I$. To see that $I \subseteq \gen{b}$, take an arbitrary element $a \in I$. Either $b \mid a$, in which case $a \in \gen{b}$, or there exist $q, r \in R$ with $r \ne 0$ and $\nu(r) < \nu(b)$ such that $a = qb + r$. Since $a \in I$ and $b \in I$, it follows that $qb \in I$, and hence that $a - qb = r \in I$. This is impossible, as the condition $\nu(r) < \nu(b)$ would contradict the minimality of $\nu(b)$. Hence, it must be the case that $a \in \gen{b}$.
