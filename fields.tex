@@ -13,6 +13,30 @@
 	\end{dfnitems}
 \end{dfnbox}
 
+\begin{dfnbox}{Field of Fractions, $\Frac(R)$, Numerator, Denominator, $a/b$, $\frac{a}{b}$}
+	Let $R$ be an integral domain. The \dfntxt{field of fractions} of $R$, denoted by $\Frac(R)$, is the set of equivalence classes of the relation $\sim$ defined on $R \times (R \setminus \{0\})$ as follows: $(a, b) \sim (c, d)$ if and only if $ad = bc$. We denote by $a/b$ or $\frac{a}{b}$ the equivalence class of the pair $(a, b) \in R \times (R \setminus \{0\})$.
+\end{dfnbox}
+
+For this definition to make sense, we need to verify that $\sim$ is an equivalence relation on $R \times (R \setminus \{0\})$. Reflexivity and symmetry are straightforward consequences of the commutativity of $R$. Indeed, let $a, c, e \in R$ and $b, d, f \in R \setminus \{0\}$ be arbitrary. Then
+\[ ab = ba \implies (a, b) \sim (a, b) \]
+shows that $\sim$ is reflexive, and
+\[ (a, b) \sim (c, d) \implies ad = bc \implies cb = da \implies (c, d) \sim (a, b) \]
+shows that $\sim$ is symmetric. Establishing transitivity requires us to invoke the lack of zero divisors in $R$. Suppose that $(a, b) \sim (c, d)$ and $(c, d) \sim (e, f)$; this means that $ad - bc = 0$ and $cf - de = 0$. It follows that
+\[ 0 = (ad - bc)f + b(cf - de) = adf - bcf + bcf - bde = adf - bde = d(af - be). \]
+Since $d \ne 0$ by hypothesis, we know that $d$ is not a zero divisor, and hence that $af - be = 0$. This proves that $(a, b) \sim (e, f)$, completing the proof that $\sim$ is transitive.
+
+\begin{thmbox}{Field of Fractions is a Field}
+	\textbf{Theorem:} If $\alg{R; 0_R, 1_R, -_R, +_R, \cdot_R}$ is an integral domain, then $\alg{\Frac(R); 0, 1, -, +, \cdot}$, is a field, where the distinguished elements $0, 1 \in \Frac(R)$ and the operations $-: \Frac(R) \to \Frac(R)$ and $+, \cdot: \Frac(R) \times \Frac(R) \to \Frac(R)$ are defined as follows:
+	\[ 0 \coloneq \frac{0_R}{1_R}
+	\qquad\qquad
+	1 \coloneq \frac{1_R}{1_R} \]
+	\[ -\frac{a}{b} \coloneq \frac{-_R a}{b}
+	\qquad\qquad
+	\frac{a}{b} + \frac{c}{d} \coloneq \frac{(a \cdot_R d) +_R (b \cdot_R c)}{b \cdot_R d}
+	\qquad\qquad
+	\frac{a}{b} \cdot \frac{c}{d} \coloneq \frac{a \cdot_R c}{b \cdot_R d} \]
+\end{thmbox}
+
 \begin{dfnbox}{Field Homomorphism}
 	A \dfntxt{field homomorphism} is a ring homomorphism $f: K \to L$ where the domain $K$ and codomain $L$ are both fields.
 \end{dfnbox}
