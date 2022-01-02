@@ -1,0 +1,227 @@
+% !TeX TS-program = xelatex
+% !TeX encoding = UTF-8
+% !TeX spellcheck = en_US
+% !TeX root = document.tex
+
+\chapter{Ring Theory}
+
+In this chapter, we introduce a new class of algebraic structures, called rngs and rings, whose study is collectively called \dfntxt{ring theory}. Rngs and rings are more complicated than groups because their definition involves not one, but two binary operations.
+
+\begin{dfnbox}{Rng}
+	A \dfntxt{rng} (pronounced as ``\textit{rung}'') is an algebraic structure $\alg{R; 0, -, +, \cdot}$ consisting of:
+	\begin{dfnitems}
+		\item a set $R$, called the \dfntxt{underlying set};
+		\item a distinguished element $0 \in R$, called the \dfntxt{zero element};
+		\item a unary operation $-: R \to R$, written as $x \mapsto -x$, called \dfntxt{negation};
+		\item a binary operation $+: R \times R \to R$, written as $(x, y) \mapsto x + y$, called \dfntxt{addition};
+		\item a binary operation $\cdot: R \times R \to R$, written as $(x, y) \mapsto x \cdot y$, called \dfntxt{multiplication};
+	\end{dfnitems}
+	satisfying the following requirements:
+	\begin{dfnitems}
+		\item \dfntxt{Additive structure}: $\alg{R; 0, -, +}$ is an abelian group.
+		\item \dfntxt{Associativity}: $(x \cdot y) \cdot z = x \cdot (y \cdot z)$ for all $x, y, z \in R$.
+		\item \dfntxt{Left distributivity}: $x \cdot (y + z) = (x \cdot y) + (x \cdot z)$ for all $x, y, z \in R$.
+		\item \dfntxt{Right distributivity}: $(x + y) \cdot z = (x \cdot z) + (y \cdot z)$ for all $x, y, z \in R$.
+	\end{dfnitems}
+\end{dfnbox}
+
+The key ingredient present in the definition of a rng is \dfntxt{distributivity}, which establishes a link between two different binary operations. We begin our study of rngs by proving a simple (but important) result to demonstrate the utility of the distributive property.
+
+\begin{thmbox}{Multiplying by Zero Yields Zero}
+	\textbf{Theorem:} Let $\alg{R; 0, -, +, \cdot}$ be a rng. For any $x \in R$, we have $0 \cdot x = x \cdot 0 = 0$.
+	\tcblower
+	\textit{Proof:} Let $x \in R$ be given. Because $0$ is the identity element of the abelian group $\langle R; 0, -, + \rangle$, we have $0 = 0 + 0$. Using left distributivity, it follows that $0 \cdot x = (0 + 0) \cdot x = (0 \cdot x) + (0 \cdot x)$, and by canceling one copy of $0 \cdot x$ on both sides, we conclude that $0 \cdot x = 0$. We similarly apply right distributivity to the expression $x \cdot 0 = x \cdot (0 + 0) = (x \cdot 0) + (x \cdot 0)$ to conclude that $x \cdot 0 = 0$.
+\end{thmbox}
+
+\begin{dfnbox}{Subrng, $S \le R$}
+	Let $\alg{R; 0, -, +, \cdot}$ be a rng. A \dfntxt{subrng} of $\alg{R; 0, -, +, \cdot}$ is a subgroup $S \le \alg{R; 0, -, +}$ that satisfies the following additional requirement:
+	\begin{dfnitems}
+		\item \dfntxt{Closed under products}: If $x, y \in S$, then $x \cdot y$ in $S$.
+	\end{dfnitems}
+	We write $S \le R$ to indicate that $S$ is a subrng of $R$.
+\end{dfnbox}
+
+\begin{dfnbox}{Zero Rng, Trivial Rng, Nonzero Rng, Nontrivial Rng}
+	The \dfntxt{zero rng} or \dfntxt{trivial rng} is the rng $\alg{ \{0\}; 0, -, +, \cdot }$ whose underlying set is a singleton containing the distinguished element $0$, and whose operations are defined by $-0 = 0 + 0 = 0 \cdot 0 = 0$. A rng is \dfntxt{nonzero} or \dfntxt{nontrivial} if its underlying set contains more than one element.
+\end{dfnbox}
+
+The zero rng is a subrng of every rng.
+
+\begin{dfnbox}{Rng Homomorphism}
+	Let $\alg{R; 0_R, -_R +_R, \cdot_R}$ and $\alg{S; 0_S, -_S +_S, \cdot_S}$ be rngs. A \dfntxt{rng homomorphism} is a function $f: R \to S$ that satisfies the following requirements:
+	\begin{dfnitems}
+		\item \dfntxt{Preserves additive structure}: $f$ is a group homomorphism between the abelian groups $\alg{R; 0_R, -_R +_R}$ and $\alg{S; 0_S, -_S +_S}$.
+		\item \dfntxt{Preserves products}: $f(x \cdot_R y) = f(x) \cdot_S f(y)$ for all $x, y \in R$.
+	\end{dfnitems}
+\end{dfnbox}
+
+Every rng homomorphism is also a group homomorphism, so the theory and terminology of group homomorphisms is immediately applicable to rng homomorphisms. For example, the kernel of a rng homomorphism $f: R \to S$ is still defined to be the set
+\[ \ker f \coloneq \{ x \in R : f(x) = 0_S \}. \]
+As with groups, we will often refer to a rng $\alg{R; 0, -, +, \cdot}$ by the name of its underlying set $R$ and denote the multiplication operation $\cdot$ by juxtaposition. We will never denote addition, subtraction, or negation by juxtaposition, so the symbols $+$ and $-$ will always be used.
+
+\begin{dfnbox}{Ideal, Left Ideal, Right Ideal, One-Sided Ideal, Two-Sided Ideal, $I \normalin R$}
+	Let $R$ be a rng.
+	\begin{dfnitems}
+		\item A \dfntxt{left ideal} of $R$ is a subrng $I \le R$ that satisfies the following additional requirement:
+		\begin{dfnitems}
+			\item \dfntxt{Absorbs left multiplication}: $rx \in I$ for all $r \in R$ and $x \in I$.
+		\end{dfnitems}
+		\item A \dfntxt{right ideal} of $R$ is a subrng $I \le R$ that satisfies the following additional requirement:
+		\begin{dfnitems}
+			\item \dfntxt{Absorbs right multiplication}: $xr \in I$ for all $x \in I$ and $r \in R$.
+		\end{dfnitems}
+		\item A \dfntxt{one-sided ideal} of $R$ is a subrng $I \le R$ that is a left ideal or a right ideal (possibly both).
+		\item A \dfntxt{two-sided ideal} of $R$, or simply an \dfntxt{ideal} of $R$, is a subrng $I \le R$ that is both a left ideal and a right ideal.
+	\end{dfnitems}
+	We write $I \normalin R$ to denote that $I$ is a (two-sided) ideal of $R$.
+\end{dfnbox}
+
+Every two-sided ideal is also a one-sided ideal, but the converse is not true.
+
+\begin{thmbox}{Kernels are Ideals}
+	\textbf{Theorem:} If $f: R \to S$ is a rng homomorphism, then $\ker f \normalin R$.
+	\tcblower
+	\textit{Proof:} By definition, a rng homomorphism $f: R \to S$ is also a group homomorphism, so we already know that $\ker f$ is a subgroup of $R$. To prove that $\ker f$ is an ideal, we must show that it absorbs multiplication. Let $r \in R$ and $x \in \ker f$ be given. It follows that
+	\[ f(rx) = f(r)f(x) = f(r)0 = 0
+	\qquad \text{and} \qquad
+	f(xr) = f(x)f(r) = 0f(r) = 0, \]
+	so we conclude that $rx \in \ker f$ and $xr \in \ker f$.
+\end{thmbox}
+
+\begin{dfnbox}{Zero Divisor, Left Zero Divisor, Right Zero Divisor, Two-Sided Zero Divisor}
+	Let $R$ be a rng.
+	\begin{dfnitems}
+		\item A \dfntxt{left zero divisor} is an element $x \in R$ for which there exists a nonzero element $y \in R \setminus \{0\}$ such that $xy = 0$.
+		\item A \dfntxt{right zero divisor} is an element $x \in R$ for which there exists a nonzero element $y \in R \setminus \{0\}$ such that $yx = 0$.
+		\item A \dfntxt{zero divisor} is an element $x \in R$ that is a left zero divisor or a right zero divisor.
+		\item A \dfntxt{two-sided zero divisor} is an element $x \in R$ that is both a left zero divisor and a right zero divisor.
+	\end{dfnitems}
+\end{dfnbox}
+
+Note that the terms ``ideal'' and ``zero divisor'' have opposite usage conventions. Unless otherwise specified, the lone term ``ideal'' means ``two-sided ideal,'' whereas the lone term ``zero divisor'' does \textit{not} mean ``two-sided zero divisor.''
+
+\begin{dfnbox}{Ring}
+	A \dfntxt{ring} is an algebraic structure $\alg{R; 0, 1, -, +, \cdot}$ consisting of a rng $\alg{R; 0, -, +, \cdot}$ and a distinguished element $1 \in R$, called the \dfntxt{identity element}, satisfying the following requirement:
+	\begin{dfnitems}
+		\item \dfntxt{Identity}: $1 \cdot x = x \cdot 1 = x$ for all $x \in R$.
+	\end{dfnitems}
+\end{dfnbox}
+
+Note that the distinguished elements $0$ and $1$ in the definition of a ring need not be distinct. There is one ring in which $0 = 1$ holds.
+
+\begin{thmbox}{$0 \ne 1$ in any Nontrivial Ring}
+	\textbf{Theorem:} Let $\alg{R; 0, 1, -, +, \cdot}$ be a ring. If $0 = 1$, then $R = \{0\}$.
+	\tcblower
+	\textit{Proof:} For any $x \in R$, we have $x = 1 \cdot x = 0 \cdot x = 0$.
+\end{thmbox}
+
+\begin{dfnbox}{Subring}
+	Let $\alg{R; 0, 1, -, +, \cdot}$ be a ring. A \dfntxt{subring} of $\alg{R; 0, 1, -, +, \cdot}$ is a subrng $S \le \alg{R; 0, -, +, \cdot}$ that satisfies the following additional requirement:
+	\begin{dfnitems}
+		\item \dfntxt{Contains the identity}: $1 \in S$.
+	\end{dfnitems}
+\end{dfnbox}
+
+In these notes, we will only use the notation $S \le R$ for \textit{subrngs}, not \textit{subrings}. This ensures consistency with the notation $I \normalin R$ for ideals (i.e., $I \normalin R \implies I \le R$), since an ideal is always a subrng, but not necessarily a subring.
+
+The distinction between subrngs and subrings is subtle and can easily lead to confusion if these terms are not used carefully. For example, if $R$ is a ring and $S \le R$ is a subrng, it is possible for $S$ to be a ring in its own right without being a \textit{subring} of $R$. Consider $\Z \times \{0\} \le \Z \times \Z$; both of these rngs are rings, with identity elements $(1, 0) \in \Z \times \{0\}$ and $(1, 1) \in \Z \times \Z$. However, $\Z \times \{0\}$ is \textit{not} a subring of $\Z \times \Z$ because $(1, 1) \notin \Z \times \{0\}$. A subring \textit{must} contain the identity element of the original ring.
+
+\begin{dfnbox}{Inverse, Left Inverse, Right Inverse, Two-Sided Inverse, Invertible, Unit}
+	Let $\alg{R; 0, 1, -, +, \cdot}$ be a ring, and let $x \in R$.
+	\begin{dfnitems}
+		\item A \dfntxt{left inverse} of $x$ is an element $y \in R$ such that $y \cdot x = 1$. If such an element exists, then we say that $x$ is \dfntxt{left-invertible}.
+		\item A \dfntxt{right inverse} of $x$ is an element $y \in R$ such that $x \cdot y = 1$. If such an element exists, then we say that $x$ is \dfntxt{right-invertible}.
+		\item A \dfntxt{two-sided inverse} of $x$, or simply an \dfntxt{inverse} of $x$, is an element $y \in R$ such that $y \cdot x = x \cdot y = 1$. If such an element exists, then we say that $x$ is \dfntxt{invertible}, and we call $x$ a \dfntxt{unit}.
+	\end{dfnitems}
+\end{dfnbox}
+
+In ring theory, the word ``inverse'' used without further elaboration usually means ``two-sided inverse.''
+
+\begin{thmbox}{Left and Right Invertibility Imply Two-Sided Invertibility}
+	\textbf{Theorem:} Let $\alg{R; 0, 1, -, +, \cdot}$ be a ring. If $x \in R$ has both a left inverse $y \in R$ and a right inverse $z \in R$, then $y = z$, and $x$ is invertible.
+	\tcblower
+	\textit{Proof:} Using the associativity of multiplication, observe that
+	\[ y = y \cdot 1 = y \cdot (x \cdot z) = (y \cdot x) \cdot z = 1 \cdot z = z. \]
+	Hence, $y = z$ is a two-sided inverse of $x$.
+\end{thmbox}
+
+\begin{thmbox}{Inverses are Unique and Invertible}
+	\textbf{Corollary:} Let $\alg{R; 0, 1, -, +, \cdot}$ be a ring. If an element $x \in R$ is invertible, then it has a unique inverse. Moreover, that inverse is itself invertible, and $x$ is its unique inverse.
+	\tcblower
+	\textit{Proof:} Let $y,z \in R$ be (two-sided) inverses of $x$. In particular, $y$ is a left inverse of $x$, and $z$ is a right inverse of $x$, so we can apply the preceding result to conclude that $y = z$.
+
+	Observe that the relation $x \cdot y = y \cdot x = 1$ that defines inverses is symmetric in $x$ and $y$. Hence, if $y$ is an inverse of $x$, then $x$ is also an inverse of $y$.
+\end{thmbox}
+
+This result allows us to speak unambiguously of \textit{the} inverse of an invertible element of a ring.
+
+\begin{dfnbox}{$R^\times$, $x^{-1}$}
+	Let $\alg{R; 0, 1, -, +, \cdot}$ be a ring. The set of all units in $R$ is denoted by $R^\times$. For each $x \in R^\times$, we denote by $x^{-1}$ the unique inverse of $x$. Thus, we regard the map $x \mapsto x^{-1}$ as a unary operation ${}^{-1}: R^\times \to R^\times$.
+\end{dfnbox}
+
+Using this notation, we can restate the preceding result as $x = (x^{-1})^{-1}$ for all $x \in R^\times$.
+
+\begin{thmbox}{$R^\times$ is a Group}
+	\textbf{Theorem:} If $\alg{R; 0, 1, -, +, \cdot}$ is a ring, then $\alg{R^\times; 1, {}^{-1}, \cdot}$ is a group.
+\end{thmbox}
+
+\begin{thmbox}{An Ideal that Contains a Unit Contains Everything}
+	\textbf{Theorem:} Let $R$ be a ring. If $I \le R$ is a one-sided ideal that contains a unit, then $I = R$.
+\end{thmbox}
+
+\begin{dfnbox}{Commutative Ring}
+	A \dfntxt{commutative ring} is a ring $R$ that satisfies the following additional requirement:
+	\begin{dfnitems}
+		\item \dfntxt{Commutativity}: $xy = yx$ for all $x, y \in R$.
+	\end{dfnitems}
+\end{dfnbox}
+
+\begin{dfnbox}{Domain}
+	A \dfntxt{domain} is a nontrivial ring in which there are no zero divisors except $0$ itself.
+\end{dfnbox}
+
+\begin{dfnbox}{Integral Domain}
+	An \dfntxt{integral domain} is a nontrivial commutative ring in which there are no zero divisors except $0$ itself.
+\end{dfnbox}
+
+\begin{dfnbox}{Principal Ideal, Generator}
+	Let $R$ be a commutative ring, and let $r \in R$. The \dfntxt{principal ideal} generated by $r$, denoted by $\gen{r}$, is the subset of $R$ consisting of all multiples of $r$.
+	\[ \gen{r} \coloneq \{ rx : x \in R \} \]
+	An ideal $I \normalin R$ is \dfntxt{principal} if there exists an element $r \in I$ such that $R = \gen{r}$. In this case, we say that $r$ \dfntxt{generates} the ideal $I$, and we call $r$ the \dfntxt{generator} of $I$.
+\end{dfnbox}
+
+\begin{dfnbox}{Principal Ideal Domain, PID}
+	A \dfntxt{principal ideal domain} is an integral domain in which every ideal is principal.
+\end{dfnbox}
+
+\begin{dfnbox}{Divides, Divisibility Relation}
+	Let $R$ be a commutative rng. An element $a \in R$ \dfntxt{divides} an element $b \in R$ if there exists an element $q \in R$ such that $b = qa$. We write $a \mid b$ to denote that $a$ divides $b$, and we call this relation ${\mid} \subseteq R \times R$ the \dfntxt{divisibility relation} on $R$.
+\end{dfnbox}
+
+The divisibility relation $\mid$ is always reflexive in a ring, but can fail to be reflexive in a rng. Note that $0$ does not divide any element of a rng except $0$, but every element of a rng divides $0$.
+
+\begin{thmbox}{Divisibility is Transitive}
+	\textbf{Theorem:} The divisibility relation on any rng is transitive.
+	\tcblower
+	\textit{Proof:} Let $R$ be a rng, and let $a, b, c \in R$. If $a \mid b$ and $b \mid c$, then there exist $x, y \in R$ such that $b = xa$ and $c = yb$. It follows that $c = yxa$, which proves that $a \mid c$.
+\end{thmbox}
+
+\begin{dfnbox}{Euclidean Valuation}
+	A \dfntxt{Euclidean valuation} on a commutative ring $R$ is a function $\nu: R \setminus \{0\} \to W$ into a well-ordered set $(W, \le)$ that has the following property: for all $a, b \in R$, if $b \ne 0$, then either $b \mid a$, or there exist $q, r \in R$ with $r \ne 0$ and $\nu(r) < \nu(b)$ such that $a = qb + r$.
+\end{dfnbox}
+
+\begin{dfnbox}{Euclidean Domain, ED}
+	A \dfntxt{Euclidean domain}, or \dfntxt{ED}, is an integral domain on which there exists a Euclidean valuation.
+\end{dfnbox}
+
+This complicated definition formalizes a simple idea: a Euclidean domain is a set in which it is possible to divide two elements with remainder. In any commutative ring, it is possible to define a completely unhelpful division-with-remainder operation by declaring $a$ divided by $b$ to have quotient $0$ and remainder $a$. In order for this operation to make useful progress, the remainder $r$ has to be, in some sense, ``smaller'' than the divisor $b$.
+
+A Euclidean valuation formalizes this notion by requiring that $\nu(r) < \nu(b)$. The actual values taken by the function $\nu$ are completely unimportant, as long as they exist in a set that does not contain an infinite descending chain $\nu(x_1) > \nu(x_2) > \cdots$. This guarantees that repeated division with remainder (as performed in the Euclidean algorithm) always terminates in a finite number of steps.
+
+\begin{thmbox}{Every ED is a PID}
+	\textbf{Theorem:} Every Euclidean domain is a principal ideal domain.
+	\tcblower
+	\textit{Proof:} Let $R$ be a Euclidean domain, and let an ideal $I \normalin R$ be given. If $I = \{0\}$, then $I$ is the principal ideal generated by $0$. Otherwise, let $\nu: R \setminus \{0\} \to W$ be a Euclidean valuation on $R$ for some well-ordered set $W$. Choose an element $b \in I \setminus \{0\}$ that minimizes $\nu(b)$. (The well-ordering of $W$ guarantees that such an element exists.)
+
+	We claim that $I = \gen{b}$. It is clear that $\gen{b} \subseteq I$, since an ideal $I$ must contain all multiples of an element $b \in I$. To see that $I \subseteq \gen{b}$, take an arbitrary element $a \in I$. Either $b \mid a$, in which case $a \in \gen{b}$, or there exist $q, r \in R$ with $r \ne 0$ and $\nu(r) < \nu(b)$ such that $a = qb + r$. Since $a \in I$ and $b \in I$, it follows that $qb \in I$, and hence that $a - qb = r \in I$. This is impossible, as the condition $\nu(r) < \nu(b)$ would contradict the minimality of $\nu(b)$. Hence, it must be the case that $a \in \gen{b}$.
+\end{thmbox}

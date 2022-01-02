@@ -1,0 +1,73 @@
+% !TeX TS-program = xelatex
+% !TeX encoding = UTF-8
+% !TeX spellcheck = en_US
+% !TeX root = document.tex
+
+\chapter{Differential Algebra}
+
+\begin{dfnbox}{Derivation}
+	A \dfntxt{derivation} on a rng $\alg{R; 0, -, +, \cdot}$ is a unary operation $\dd: R \to R$ that satisfies the following requirements:
+	\begin{dfnitems}
+		\item \dfntxt{Additivity}: $\dd(x + y) = \dd(x) + \dd(y)$ for all $x, y \in R$.
+		\item \dfntxt{Leibniz rule}: $\dd(x \cdot y) = \dd(x) \cdot y + x \cdot \dd(y)$ for all $x, y \in R$.
+	\end{dfnitems}
+\end{dfnbox}
+
+\begin{dfnbox}{Constant}
+	Let $R$ be a rng, and $\dd: R \to R$ be a derivation on $R$. An element $x \in R$ is \dfntxt{constant} with respect to $\dd$ if $\dd(x) = 0$.
+\end{dfnbox}
+
+\begin{dfnbox}{Differential Rng}
+	A \dfntxt{differential rng} is an algebraic structure $\alg{R; 0, -, \dd, +, \cdot}$ consisting of a rng $\alg{R; 0, -, +, \cdot}$ and a derivation $\dd: R \to R$ on $\alg{R; 0, -, +, \cdot}$.
+\end{dfnbox}
+
+\begin{dfnbox}{Subrng of Constants, $\const(R)$}
+	Let $R$ be a differential rng. The \dfntxt{subrng of constants} of $R$, denoted by $\const(R)$, is the set of constants in $R$.
+	\[ \const(R) \coloneq \{ x \in R : \dd(x) = 0 \} \]
+\end{dfnbox}
+
+\begin{thmbox}{Constants Form a Subrng}
+	\textbf{Theorem:} If $R$ is a differential rng, then $\const(R) \le R$.
+	\tcblower
+	\textit{Proof:} It suffices to show that $\const(R)$ is closed under sums and products. Let $x, y \in \const(R)$.
+	\[ \dd(x + y) = \dd(x) + \dd(y) = 0 + 0 = 0 \implies x + y \in \const(R) \]
+	\[ \dd(x \cdot y) = \dd(x) \cdot y + x \cdot \dd(y) = 0 \cdot y + x \cdot 0 = 0 \implies x \cdot y \in \const(R) \]
+\end{thmbox}
+
+\begin{dfnbox}{Antiderivative, Integrable}
+	Let $R$ be a differential rng, and let $f \in R$. An \dfntxt{antiderivative} of $f$ is an element $F \in R$ such that $\dd(F) = f$. If $f$ has an antiderivative, then we say that $f$ is \dfntxt{integrable}.
+\end{dfnbox}
+
+\begin{dfnbox}{Differential Subrng, Differential Rng Extension}
+	Let $R$ be a differential rng. A \dfntxt{differential subrng} of $R$ is a subrng $S \le R$ that satisfies the following additional requirement:
+	\begin{dfnitems}
+		\item \dfntxt{Closed under derivation:} If $x \in S$, then $\dd(x) \in S$.
+	\end{dfnitems}
+	If $S$ is a differential subrng of $R$, then we say that $R$ is a \dfntxt{differential extension} of $S$, and say that $R/S$ (pronounced as ``$R$ \textit{over} $S$'') is a \dfntxt{differential rng extension}.
+\end{dfnbox}
+
+Note that in a differential rng extension $R/S$, the derivation on $R$ is required to coincide with the derivation on $S$ when restricted to $S$. This distinguishes a differential rng extension $R/S$ from a rng extension $R/S$ where $R$ happens to be a differential rng.
+
+\begin{dfnbox}{Differential Ring}
+	A \dfntxt{differential ring} is an algebraic structure $\alg{R; 0, 1, -, \dd, +, \cdot}$ consisting of a ring $\alg{R; 0, 1, -, +, \cdot}$ and a derivation $\dd: R \to R$ on $\alg{R; 0, -, +, \cdot}$.
+\end{dfnbox}
+
+The terms \dfntxt{differential integral domain}, \dfntxt{differential PID}, \dfntxt{differential field}, etc.\ are defined analogously.
+
+\begin{thmbox}{$1$ is a Constant}
+	\textbf{Theorem:} In any differential ring, $\dd(1) = 0$.
+	\tcblower
+	\textit{Proof:} We apply the Leibniz rule to $1 = 1 \cdot 1$.
+	\[ \dd(1) = \dd(1 \cdot 1) = \dd(1) \cdot 1 + 1 \cdot \dd(1) = \dd(1) + \dd(1) \]
+	By cancellation, this implies that $\dd(1) = 0$.
+\end{thmbox}
+
+This result implies that the \textit{subrng} of constants of a differential ring is, in fact, a \textit{subring}. Hence, when $R$ is a differential ring, we will refer to $\const(R)$ as its \dfntxt{subring of constants}.
+
+\begin{thmbox}{Algebraic Extensions Don't Create Antiderivatives}
+	\textbf{Theorem:} Let $K$ be a differential field of characteristic zero. If $f \in K$ does not have an antiderivative in $K$, then $f$ cannot have an antiderivative in any algebraic differential extension of $K$.
+	\tcblower
+	\textit{Proof:} We proceed by contraposition. Suppose that there exists an algebraic differential extension $L/K$ having an element $g \in L$ for which $f = \dd(g)$. Let $\Tr: K[g] \to K$ denote the trace map, and recall that $\Tr$ commutes with $\dd$. Since $f \in K$, we have $\Tr(f) = nf$, where $n \coloneq [K[g] : K]$. It follows that
+	\[ \dd \left( \frac{\Tr(g)}{n} \right) = \frac{1}{n} \dd(\Tr(g)) = \frac{1}{n} \Tr(\dd(g)) = \frac{1}{n} \Tr(f) = f \]
+	which shows that $\Tr(g)/n \in K$ is an antiderivative of $f$.
+\end{thmbox}
