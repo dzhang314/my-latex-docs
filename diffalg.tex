@@ -5,6 +5,12 @@
 
 \chapter{Differential Algebra}
 
+Differential algebra extends ring theory and field theory by adding a new unary operation, called a \textit{derivation}, that models the process of differentiating functions in calculus. This allows us to reason about the abstract algebraic properties of integration and differentiation without invoking analysis or introducing any of its complications (e.g., continuity, differentiability, convergence, and well-definedness of multivalued functions).
+
+For example, differential algebra will allow us to prove that certain functions, such as $e^{-x^2}$, do not have antiderivatives that are expressible in terms of elementary functions (i.e., trigonometric functions, exponentials, and logarithms). It will also show that certain differential equations do not admit elementary solutions.
+
+We begin by formally defining derivations and differential rngs.
+
 \begin{dfnbox}{Derivation}
 	A \dfntxt{derivation} on a rng $\alg{R; 0, -, +, \cdot}$ is a unary operation $\dd: R \to R$ that satisfies the following requirements:
 	\begin{dfnitems}
@@ -13,12 +19,14 @@
 	\end{dfnitems}
 \end{dfnbox}
 
-\begin{dfnbox}{Constant}
-	Let $R$ be a rng, and $\dd: R \to R$ be a derivation on $R$. An element $x \in R$ is \dfntxt{constant} with respect to $\dd$ if $\dd(x) = 0$.
-\end{dfnbox}
-
 \begin{dfnbox}{Differential Rng}
 	A \dfntxt{differential rng} is an algebraic structure $\alg{R; 0, -, \dd, +, \cdot}$ consisting of a rng $\alg{R; 0, -, +, \cdot}$ and a derivation $\dd: R \to R$ on $\alg{R; 0, -, +, \cdot}$.
+\end{dfnbox}
+
+Differential rngs will be the central object of study in this chapter. Just as the distributive property creates a link between addition $+$ and multiplication $\cdot$ in ring theory, the Leibniz rule requires the derivation $\dd$ to be intimately linked to both addition and multiplication. This allows us to define several new rng-theoretic structures on a differential rng.
+
+\begin{dfnbox}{Constant}
+	Let $R$ be a rng, and $\dd: R \to R$ be a derivation on $R$. An element $x \in R$ is \dfntxt{constant} with respect to $\dd$ if $\dd(x) = 0$.
 \end{dfnbox}
 
 \begin{dfnbox}{Subrng of Constants, $\const(R)$}
@@ -46,7 +54,7 @@
 	If $S$ is a differential subrng of $R$, then we say that $R$ is a \dfntxt{differential extension} of $S$, and say that $R/S$ (pronounced as ``$R$ \textit{over} $S$'') is a \dfntxt{differential rng extension}.
 \end{dfnbox}
 
-Note that in a differential rng extension $R/S$, the derivation on $R$ is required to coincide with the derivation on $S$ when restricted to $S$. This distinguishes a differential rng extension $R/S$ from a rng extension $R/S$ where $R$ happens to be a differential rng.
+Note that in a differential rng extension $R/S$, the derivation on $R$ is required to coincide with the derivation on $S$. If the two derivations disagree, then we do not call $R/S$ a \textit{differential} rng extension (although $R/S$ may still be a rng extension).
 
 \begin{dfnbox}{Differential Ring}
 	A \dfntxt{differential ring} is an algebraic structure $\alg{R; 0, 1, -, \dd, +, \cdot}$ consisting of a ring $\alg{R; 0, 1, -, +, \cdot}$ and a derivation $\dd: R \to R$ on $\alg{R; 0, -, +, \cdot}$.
@@ -62,7 +70,85 @@ The terms \dfntxt{differential integral domain}, \dfntxt{differential PID}, \dfn
 	By cancellation, this implies that $\dd(1) = 0$.
 \end{thmbox}
 
-This result implies that the \textit{subrng} of constants of a differential ring is, in fact, a \textit{subring}. Hence, when $R$ is a differential ring, we will refer to $\const(R)$ as its \dfntxt{subring of constants}.
+This result implies that the \textit{subrng} of constants of a differential ring is, in fact, a \textit{subring}. Hence, when $R$ is a differential ring, we will refer to $\const(R)$ as its \dfntxt{subring of constants}. Similarly, when $F$ is a field, we will refer to $\const(F)$ as its \dfntxt{subfield of constants}.
+
+\begin{thmbox}{Quotient Rule Uniquely Extends Derivation to Field of Fractions}
+	Let $R$ be a differential integral domain. The derivation $\dd: \Frac(R) \to \Frac(R)$ defined by
+	\[ \dd\left( \frac{a}{b} \right) \coloneq \frac{b \dd(a) - a \dd(b)}{b^2} \]
+	is the unique derivation on $\Frac(R)$ such that $\Frac(R)/R$ is a differential ring extension.
+\end{thmbox}
+
+\begin{dfnbox}{Coefficient Lift}
+	Let $R$ be a commutative rng, and let $\dd: R \to R$ be a derivation. The \dfntxt{coefficient lift} of $\dd$ is the function $\kappa_\dd: R[x] \to R[x]$ defined by
+	\[ \kappa_\dd\left( \sum_{i=0}^n a_i x_i \right) \coloneq \sum_{i=0}^n \dd(a_i) x^i. \]
+\end{dfnbox}
+
+In other words, $\kappa_\dd$ takes a polynomial $p \in R[x]$ and applies the derivation $\dd$ to each coefficient of $p$. Note that $\kappa_\dd$ may lower the degree of a polynomial if $\dd$ annihilates its leading coefficient.
+
+\begin{thmbox}{Coefficient Lift is a Derivation}
+	Let $R$ be a commutative rng. If $\dd: R \to R$ is a derivation, then $\kappa_\dd: R[x] \to R[x]$ is a derivation.
+\end{thmbox}
+
+Note that if $R$ is a differential integral domain, then $R[x]$ is also a differential integral domain under $\kappa_\dd$. Hence, $\kappa_\dd$ extends uniquely to its field of fractions $R(x) \coloneq \Frac(R[x])$. We also denote this extension by $\kappa_\dd$.
+
+\begin{thmbox}{Derivative of a Polynomial}
+	Let $S/R$ be a differential extension of commutative rngs. For any $\alpha \in S$ and $p \in R[x]$, we have
+	\[ \dd(p(\alpha)) = \kappa_\dd(p)(\alpha) + p'(\alpha) \dd(\alpha) \]
+	where $p'$ denotes the usual formal derivative of the polynomial $p$.
+\end{thmbox}
+
+\begin{thmbox}{Derivative of a Transcendental Element Uniquely Determines an Extension}
+	Let $F$ be a differential field. For any $a \in F(t)$, there exists a unique derivation $\dd_a: F(t) \to F(t)$ extending $\dd: F \to F$ such that $\dd(t) = a$.
+\end{thmbox}
+
+\begin{thmbox}{}
+	\textbf{Theorem:} Let $L/K$ be a differential field extension. If $c \in \const(L)$ is algebraic over $K$, then $c$ is algebraic over $\const(K)$.
+\end{thmbox}
+
+\begin{thmbox}{}
+	\textbf{Theorem:} Let $L/K$ be a differential field extension. For all $t \in L$, we have $\dd(t) \in K[t]$ if and only if $K[t]$ is closed under $\dd$.
+\tcblower
+	\textit{Proof:} If $K[t]$ is closed under $\dd$, then $t \in K[t]$ implies that $\dd(t) \in K[t]$. Conversely, suppose that $\dd(t) \in K[t]$. For any polynomial $p \in K[x]$, we have
+	\[ \dd(p(t)) = \kappa_\dd(p)(t) + p'(t) \dd(t) \in K[t]. \]
+	This proves that $K[t]$ is closed under $\dd$.
+\end{thmbox}
+
+\begin{dfnbox}{Monomial}
+	Let $L/K$ be a differential field extension. An element $t \in L$ is a \dfntxt{monomial} over $K$ if $t$ is transcendental over $K$ and $\dd(t) \in K[t]$.
+\end{dfnbox}
+
+\begin{dfnbox}{Primitive, $\int a$, Hyperexponential, $\exp \int a$, Liouvillian}
+	Let $L/K$ be a differential field extension.
+	\begin{dfnitems}
+		\item An element $t \in L$ is \dfntxt{primitive} over $K$ if $\dd(t) \in K$. If this is the case, then we write $t = \int a$, where $a = \dd(t) \in K$.
+		\item An element $t \in L$ is \dfntxt{hyperexponential} over $K$ if $t \ne 0$ and $\dd(t)/t \in K$. If this is the case, then we write $t = \exp \int a$, where $a = \dd(t)/t \in K$.
+		\item An element $t \in L$ is \dfntxt{Liouvillian} over $K$ if $t$ is algebraic, primitive, or hyperexponential over $K$.
+	\end{dfnitems}
+\end{dfnbox}
+
+The expression $\int a$ should not be understood as naming a particular element of $L$. Instead, the notation $t = \int a$ should be interpreted as a \textit{condition} on $t$, in much that same way that $f(x) = O(x^2)$ is understood as a condition on the function $f$. Indeed, just as $f(x) = O(x^2)$ and $g(x) = O(x^2)$ do not imply $f(x) = g(x)$, the conditions $t = \int a$ and $u = \int a$ do not imply that $t = u$. It can only be concluded that $t$ and $u$ differ by a constant, since
+\[ \dd(t - u) = \dd(t) - \dd(u) = a - a = 0 \qquad\implies\qquad t - u \in \const(L). \]
+Similarly, if $t = \exp \int a$ and $u = \exp \int a$, then $\dd(t) = at$ and $\dd(u) = au$. It follows that $t/u$ is a constant, since
+\[ \dd\left( \frac{t}{u} \right) = \frac{u \dd(t) - t \dd(u)}{u^2} = \frac{uat - tau}{u^2} = 0 \qquad\implies\qquad \frac{t}{u} \in \const(L). \]
+
+\begin{dfnbox}{Liouvillian Extension}
+	A differential field extension $L/K$ is a \dfntxt{Liouvillian extension} if there exist $t_1, \dots, t_n \in L$ such that $L = K(t_1, \dots, t_n)$, and for each $i \in \{1, \dots, n\}$, the element $t_i$ is Liouvillian over the field $K(t_1, \dots, t_{i-1})$.
+\end{dfnbox}
+
+\begin{dfnbox}{Logarithm, $\log b$, Exponential, $\exp b$, Elementary}
+	Let $L/K$ be a differential field extension.
+	\begin{dfnitems}
+		\item An element $t \in L$ is a \dfntxt{logarithm} over $K$ if $\dd(t) = \dd(b) / b$ for some $b \in K \setminus \{0\}$. If this is the case, then we write $t = \log b$.
+		\item An element $t \in L$ is an \dfntxt{exponential} over $K$ if $t \ne 0$ and $\dd(t)/t = \dd(b)$ for some $b \in K$. If this is the case, then we write $t = \exp b$.
+		\item An element $t \in L$ is \dfntxt{elementary} over $K$ if $t$ is algebraic, a logarithm, or an exponential over $K$.
+	\end{dfnitems}
+\end{dfnbox}
+
+Just like $\int a$, the expressions $\log b$ and $\exp b$ should not be understood as naming particular elements of $L$.
+
+Note that $0 = \log 1$ and $1 = \exp 0$ in any differential field. This follows from the fact that $\dd(1) = 0$.
+
+Every logarithm is primitive and every exponential is hyperexponential, so every elementary element is also a Liouvillian element.
 
 \begin{thmbox}{Algebraic Extensions Don't Create Antiderivatives}
 	\textbf{Theorem:} Let $K$ be a differential field of characteristic zero. If $f \in K$ does not have an antiderivative in $K$, then $f$ cannot have an antiderivative in any algebraic differential extension of $K$.
