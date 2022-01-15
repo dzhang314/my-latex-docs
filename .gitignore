@@ -1,4 +1,5 @@
 *.aux
+*.dfn
 *.log
 *.out
 *.synctex.gz
