@@ -1,4 +1,5 @@
 \dfntxt{term}#n
+\todo{content}#n
 
 \subsetneq#m
 \supsetneq#m
@@ -39,16 +40,16 @@
 \vy#m
 \vz#m
 
-\abs{x}#m
-\norm{x}#m
-\alg{carriers; operations}#m
-
 \powerset#m
 \injto#m
 \surjto#m
 \bijto#m
 
 \id#m
+
+\abs{x}#m
+\norm{x}#m
+\alg{carriers; operations}#m
 
 \listofdefinition#n
 \begin{dfnbox}{term}#n
