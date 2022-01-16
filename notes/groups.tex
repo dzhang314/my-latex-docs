@@ -5,22 +5,6 @@
 
 \chapter{Group Theory}
 
-\begin{dfnbox}{Group}
-	A \dfntxt{group} is an algebraic structure $\alg{G; 1, {}^{-1}, \cdot}$ consisting of:
-	\begin{dfnitems}
-		\item a set $G$, called the \dfntxt{underlying set};
-		\item a distinguished element $1 \in G$, called the \dfntxt{identity element};
-		\item a unary operation ${}^{-1}: G \to G$, written as $x \mapsto x^{-1}$, called \dfntxt{inversion};
-		\item a binary operation $\cdot: G \times G \to G$, written as $(x, y) \mapsto x \cdot y$, called the \dfntxt{group operation} or \dfntxt{group product};
-	\end{dfnitems}
-	satisfying the following requirements:
-	\begin{dfnitems}
-		\item \dfntxt{Associative property}: $(x \cdot y) \cdot z = x \cdot (y \cdot z)$ for all $x, y, z \in G$.
-		\item \dfntxt{Identity property}: $1 \cdot x = x \cdot 1 = x$ for all $x \in G$.
-		\item \dfntxt{Inverse property}: $x \cdot x^{-1} = x^{-1} \cdot x = 1$ for all $x \in G$.
-	\end{dfnitems}
-\end{dfnbox}
-
 \begin{thmbox}{Cancellation Laws}
 	\textbf{Theorem:} Let $\alg{G; 1, {}^{-1}, \cdot}$ be a group, and let $x, y, z \in G$.
 	\begin{dfnitems}
@@ -162,12 +146,7 @@ When dealing with more than one group in the same context, it is often helpful t
 	We write $N \normalin G$ to denote that $N$ is a normal subgroup of $G$.
 \end{dfnbox}
 
-\begin{dfnbox}{Abelian Group}
-	An \dfntxt{abelian group} is a group $G$ that satisfies the following additional requirement:
-	\begin{dfnitems}
-		\item \dfntxt{Commutative property}: $x y = y x$ for all $x, y \in G$.
-	\end{dfnitems}
-\end{dfnbox}
+
 
 When a group is abelian, it is customary to adopt a different notational convention. Instead of the \dfntxt{multiplicative notation} $\alg{G; 1, {}^{-1}, \cdot}$, for abelian groups we use the \dfntxt{additive notation} $\alg{G; 0, -, +}$.
 

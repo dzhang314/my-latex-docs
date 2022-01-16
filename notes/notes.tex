@@ -1,0 +1,166 @@
+% !TeX program = xelatex
+
+\documentclass[12pt]{report}
+\usepackage{dkzhang}
+\usepackage[margin=1in]{geometry}
+
+\title{Notes on Mathematics}
+\author{David K. Zhang}
+\date{Last modified \today}
+
+\begin{document}
+\maketitle
+\pagenumbering{roman}
+\listofdefinition
+\clearpage
+\listoftheorem
+\clearpage
+\pagenumbering{arabic}
+
+
+
+\chapter{Set Theory}
+
+\begin{dfnbox}{Cartesian Product, $A \times B$}
+	Let $A$ and $B$ be sets. The \dfntxt{Cartesian product} of $A$ and $B$, denoted by $A \times B$, is the set of all ordered pairs $(a, b)$ consisting of an element $a \in A$ followed by an element $b \in B$.
+	\[ A \times B \coloneq \{ (a, b) : a \in A \text{ and } b \in B \} \]
+\end{dfnbox}
+
+\begin{dfnbox}{Relation, Binary Relation, $a \mathrel{R} b$}
+	Let $A$ and $B$ be sets. A \dfntxt{relation} between $A$ and $B$, also known as a \dfntxt{binary relation} between $A$ and $B$, is a subset $R \subseteq A \times B$ of their Cartesian product.
+
+	Given $a \in A$ and $b \in B$, we write $a \mathrel{R} b$ to denote that  $(a, b) \in R$. If this is the case, then we say that $R$ \textit{relates} $a$ to $b$.
+
+	If $A = B$, then instead of saying that $R$ is a relation \textit{between} $A$ and $A$, we simply say that $R$ is a binary relation \textit{on} $A$.
+\end{dfnbox}
+
+For example, the less-than relation $<$ is a binary relation on the set $\N$ of natural numbers. We write $3 < 4$ to indicate that the ordered pair $(3, 4) \in \N \times \N$ is an element of the relation $<$.
+
+\begin{dfnbox}{Function, Domain, Codomain, $f: A \to B$, $f(x)$}
+	Let $A$ and $B$ be sets. A \dfntxt{function} from $A$ to $B$ is a binary relation $f \subseteq A \times B$ between $A$ and $B$ that has the following property: for each $x \in A$, there exists a unique $y \in B$ such that $x \mathrel{f} y$. We call the set $A$ the \dfntxt{domain} of the function $f$, and we call $B$ the \dfntxt{codomain} of $f$.
+
+	We write $f: A \to B$ to denote that $f$ is a function from $A$ to $B$, and given $x \in A$, we write $f(x)$ to denote the unique element of $B$ that is related to $x$ by $f$.
+\end{dfnbox}
+
+\begin{dfnbox}{Identity Function, $\id_A$}
+	Let $A$ be a set. The \dfntxt{identity function} on $A$ is the function $\id_A: A \to A$ defined by $\id_A(a) \coloneq a$ for all $a \in A$.
+\end{dfnbox}
+
+\begin{dfnbox}{Cartesian Product, $\prod_{i \in I} A_i$}
+	Let $I$ be an index set, and let $\{ A_i \}_{i \in I}$ be an indexed family of sets. The \dfntxt{Cartesian product} of $\{ A_i \}_{i \in I}$, denoted by $\prod_{i \in I} A_i$, is the set of all functions $f: I \to \bigcup_{i \in I} A_i$ such that $f(i) \in A_i$ for all $i \in I$.
+	\[ \prod_{i \in I} A_i \coloneq \left\{ f: I \to \bigcup_{i \in I} A_i \ \middle|\ \forall i \in I : f(i) \in A_i \right\} \]
+\end{dfnbox}
+
+
+
+\chapter{Topology}
+
+\begin{dfnbox}{Metric, Distance Function}
+	Let $X$ be a set. A \dfntxt{metric} on $X$, also known as a \dfntxt{distance function} on $X$, is a function $d: X \times X \to \R$ that satisfies the following requirements:
+	\begin{boxitems}
+		\item \dfntxt{Positive-definiteness}: $d(x, y) \ge 0$ for all $x, y \in X$, and $d(x, y) = 0$ if and only if $x = y$.
+		\item \dfntxt{Symmetry}: $d(x, y) = d(y, x)$ for all $x, y \in X$.
+		\item \dfntxt{Triangle inequality}: $d(x, z) \le d(x, y) + d(y, z)$ for all $x, y, z \in X$.
+	\end{boxitems}
+\end{dfnbox}
+
+\begin{dfnbox}{Metric Space}
+	A \dfntxt{metric space} is an ordered pair $(X, d)$ consisting of a set $X$ and a metric $d$ on $X$.
+\end{dfnbox}
+
+\begin{dfnbox}{Continuity}
+	Let $(X, d_X)$ and $(Y, d_Y)$ be metric spaces. A function $f: X \to Y$ is \dfntxt{continuous} at a point $x_0 \in X$ if, for every $\epsilon > 0$, there exists $\delta > 0$, such that for all $x \in X$, if $d_X(x, x_0) < \delta$, then $d_Y(f(x), f(x_0)) < \epsilon$.
+\end{dfnbox}
+
+
+
+\chapter{Group Theory}
+
+\begin{dfnbox}{Group}
+	A \dfntxt{group} is an algebraic structure $\alg{G; 1, {}^{-1}, \cdot}$ consisting of:
+	\begin{boxitems}
+		\item a set $G$, called the \dfntxt{underlying set};
+		\item a distinguished element $1 \in G$, called the \dfntxt{identity element};
+		\item a unary operation ${}^{-1}: G \to G$, written as $x \mapsto x^{-1}$, called \dfntxt{inversion};
+		\item a binary operation $\cdot: G \times G \to G$, written as $(x, y) \mapsto x \cdot y$, called the \dfntxt{group operation} or \dfntxt{group product};
+	\end{boxitems}
+	satisfying the following requirements:
+	\begin{boxitems}
+		\item \dfntxt{Associative property}: $(x \cdot y) \cdot z = x \cdot (y \cdot z)$ for all $x, y, z \in G$.
+		\item \dfntxt{Identity property}: $1 \cdot x = x \cdot 1 = x$ for all $x \in G$.
+		\item \dfntxt{Inverse property}: $x \cdot x^{-1} = x^{-1} \cdot x = 1$ for all $x \in G$.
+	\end{boxitems}
+\end{dfnbox}
+
+\begin{dfnbox}{Abelian Group}
+	An \dfntxt{abelian group} is a group $\alg{G; 1, {}^{-1}, \cdot}$ that satisfies the following additional requirement:
+	\begin{boxitems}
+		\item \dfntxt{Commutative property}: $x \cdot y = y \cdot x$ for all $x, y \in G$.
+	\end{boxitems}
+\end{dfnbox}
+
+
+
+\chapter{Ring Theory}
+
+In this chapter, we introduce a new class of algebraic structures, called rngs and rings, whose study is collectively called \dfntxt{ring theory}. Rngs and rings are more complicated than groups because their definition involves not one, but two binary operations.
+
+\begin{dfnbox}{Rng}
+	A \dfntxt{rng} (pronounced as ``\textit{rung}'') is an algebraic structure $\alg{R; 0, -, +, \cdot}$ consisting of:
+	\begin{boxitems}
+		\item a set $R$, called the \dfntxt{underlying set};
+		\item a distinguished element $0 \in R$, called the \dfntxt{zero element};
+		\item a unary operation $-: R \to R$, written as $x \mapsto -x$, called \dfntxt{negation};
+		\item a binary operation $+: R \times R \to R$, written as $(x, y) \mapsto x + y$, called \dfntxt{addition};
+		\item a binary operation $\cdot: R \times R \to R$, written as $(x, y) \mapsto x \cdot y$, called \dfntxt{multiplication};
+	\end{boxitems}
+	satisfying the following requirements:
+	\begin{boxitems}
+		\item \dfntxt{Additive structure}: $\alg{R; 0, -, +}$ is an abelian group.
+		\item \dfntxt{Associativity}: $(x \cdot y) \cdot z = x \cdot (y \cdot z)$ for all $x, y, z \in R$.
+		\item \dfntxt{Left distributivity}: $x \cdot (y + z) = (x \cdot y) + (x \cdot z)$ for all $x, y, z \in R$.
+		\item \dfntxt{Right distributivity}: $(x + y) \cdot z = (x \cdot z) + (y \cdot z)$ for all $x, y, z \in R$.
+	\end{boxitems}
+\end{dfnbox}
+
+The key ingredient in the definition of a rng is \dfntxt{distributivity}, which establishes a link between two different binary operations. We begin our study of rngs by proving a simple (but important) result to demonstrate the utility of the distributive property.
+
+\begin{thmbox}{Multiplying by Zero Yields Zero}
+	\textbf{Theorem:} Let $\alg{R; 0, -, +, \cdot}$ be a rng. For any $x \in R$, we have $0 \cdot x = x \cdot 0 = 0$.
+\tcblower
+	\textit{Proof:} Let $x \in R$ be given. Because $0$ is the identity element of the abelian group $\langle R; 0, -, + \rangle$, we have $0 = 0 + 0$. Using left distributivity, it follows that $0 \cdot x = (0 + 0) \cdot x = (0 \cdot x) + (0 \cdot x)$, and by canceling one copy of $0 \cdot x$ on both sides, we conclude that $0 \cdot x = 0$. We similarly apply right distributivity to the expression $x \cdot 0 = x \cdot (0 + 0) = (x \cdot 0) + (x \cdot 0)$ to conclude that $x \cdot 0 = 0$.
+\end{thmbox}
+
+\begin{dfnbox}{Zero Rng, Trivial Rng}
+	The \dfntxt{zero rng} or \dfntxt{trivial rng} is the rng $\alg{ \{0\}; 0, -, +, \cdot }$ whose underlying set is a singleton containing the distinguished element $0$, and whose operations are defined by $-0 = 0 + 0 = 0 \cdot 0 = 0$.
+\end{dfnbox}
+
+\begin{dfnbox}{Nonzero Rng, Nontrivial Rng}
+	A rng is \dfntxt{nonzero} or \dfntxt{nontrivial} if its underlying set contains more than one element.
+\end{dfnbox}
+
+\begin{dfnbox}{Ring}
+	A \dfntxt{ring} is an algebraic structure $\alg{R; 0, 1, -, +, \cdot}$ consisting of:
+	\begin{boxitems}
+		\item a set $R$, called the \dfntxt{underlying set};
+		\item a distinguished element $0 \in R$, called the \dfntxt{zero element};
+		\item a distinguished element $1 \in R$, called the \dfntxt{identity element};
+		\item a unary operation $-: R \to R$, written as $x \mapsto -x$, called \dfntxt{negation};
+		\item a binary operation $+: R \times R \to R$, written as $(x, y) \mapsto x + y$, called \dfntxt{addition};
+		\item a binary operation $\cdot: R \times R \to R$, written as $(x, y) \mapsto x \cdot y$, called \dfntxt{multiplication};
+	\end{boxitems}
+	satisfying the following requirements:
+	\begin{boxitems}
+		\item \dfntxt{Rng structure}: $\alg{R; 0, -, +, \cdot}$ is a rng.
+		\item \dfntxt{Identity}: $1 \cdot x = x \cdot 1 = x$ for all $x \in R$.
+	\end{boxitems}
+\end{dfnbox}
+
+\begin{dfnbox}{Commutative Ring}
+	A \dfntxt{commutative ring} is a ring $R$ that satisfies the following additional requirement:
+	\begin{boxitems}
+		\item \dfntxt{Commutativity}: $x \cdot y = y \cdot x$ for all $x, y \in R$.
+	\end{boxitems}
+\end{dfnbox}
+
+\end{document}
