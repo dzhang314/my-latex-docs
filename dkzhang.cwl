@@ -36,7 +36,10 @@
 \vy#m
 \vz#m
 
+\abs{x}#m
+\norm{x}#m
 \alg{carriers; operations}#m
+
 \id#m
 
 \listofdefinition#n
