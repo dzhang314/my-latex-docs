@@ -29,7 +29,7 @@
 In other words, $x \notin \emptyset$ for all $x$.
 
 \begin{dfnbox}{Subset, $A \subseteq B$}
-	Let $A$ and $B$ be sets. We say that $A$ is a \dfntxt{subset} of $B$, denoted by $A \subseteq B$, if every element of $A$ is also an element of $B$, i.e., for all $a \in A$ we have $a \in B$.
+	Let $A$ and $B$ be sets. We say that $A$ is a \dfntxt{subset} of $B$, denoted by $A \subseteq B$, if every element of $A$ is also an element of $B$, i.e., for all $x \in A$ we have $x \in B$.
 \end{dfnbox}
 
 \begin{dfnbox}{Superset, $A \supseteq B$}
@@ -61,26 +61,57 @@ Note that $\powerset(A)$ contains both the empty set $\emptyset$ and the set $A$
 	\[ A \times B \coloneq \{ (a, b) : a \in A \text{ and } b \in B \} \]
 \end{dfnbox}
 
-\begin{dfnbox}{Relation, Binary Relation, $a \mathrel{R} b$, $a \mathrel{\cancel{R}} b$}
+\begin{dfnbox}{Relation, Binary Relation, Relates, $a \mathrel{R} b$, $a \mathrel{\cancel{R}} b$}
 	Let $A$ and $B$ be sets. A \dfntxt{relation} between $A$ and $B$, also known as a \dfntxt{binary relation} between $A$ and $B$, is a subset $R \subseteq A \times B$ of their Cartesian product.
 
-	Given $a \in A$ and $b \in B$, we write $a \mathrel{R} b$ to denote that  $(a, b) \in R$. If this is the case, then we say that $R$ \textit{relates} $a$ to $b$. Similarly, we write $a \mathrel{\cancel{R}} b$ to denote that $(a, b) \notin R$.
+	Given $a \in A$ and $b \in B$, we write $a \mathrel{R} b$ to denote that  $(a, b) \in R$. If this is the case, then we say that $R$ \dfntxt{relates} $a$ to $b$. Similarly, we write $a \mathrel{\cancel{R}} b$ to denote that $(a, b) \notin R$.
 
 	If $A = B$, then instead of saying that $R$ is a relation \textit{between} $A$ and $A$, we simply say that $R$ is a binary relation \textit{on} $A$.
 \end{dfnbox}
 
 For example, the less-than relation $<$ is a binary relation on the set $\N$ of natural numbers. We write $3 < 4$ to indicate that the ordered pair $(3, 4) \in \N \times \N$ is an element of the relation $<$.
 
-\begin{dfnbox}{Function, Domain, Codomain, Maps, $f: A \to B$, $f(x)$}
-	Let $A$ and $B$ be sets. A \dfntxt{function} from $A$ to $B$ is a binary relation $f \subseteq A \times B$ between $A$ and $B$ that has the following property: for each $x \in A$, there exists a unique $y \in B$ such that $x \mathrel{f} y$. We call the set $A$ the \dfntxt{domain} of the function $f$, and we call $B$ the \dfntxt{codomain} of $f$.
+\begin{dfnbox}{Function, Maps, Domain, Codomain, $f: A \to B$, $f(x)$}
+	Let $A$ and $B$ be sets. A \dfntxt{function} from $A$ to $B$ is a binary relation $f \subseteq A \times B$ between $A$ and $B$ that has the following property: for each $x \in A$, there exists a unique $y \in B$ such that $x \mathrel{f} y$. Instead of the word ``relates,'' we say that the function $f$ \dfntxt{maps} $x$ to $y$. We call the set $A$ the \dfntxt{domain} of $f$, and we call $B$ the \dfntxt{codomain} of $f$.
 
-	We write $f: A \to B$ to denote that $f$ is a function from $A$ to $B$, and given $x \in A$, we write $f(x)$ to denote the unique element of $B$ that is related to $x$ by $f$. We say that $f$ \dfntxt{maps} $x$ to $f(x)$.
+	We write $f: A \to B$ to denote that $f$ is a function from $A$ to $B$, and given $x \in A$, we write $f(x)$ to denote the unique element of $B$ that is related to $x$ by $f$.
 \end{dfnbox}
 
-\begin{dfnbox}{Injective Function, Injection}
-	Let $A$ and $B$ be sets. A function $f: A \to B$ is \dfntxt{injective}, or an \dfntxt{injection}, if no two distinct elements of $A$ are mapped to the same element of $B$ by $f$.
+\begin{dfnbox}{Injective Function, One-to-one Function, Injection, $f: A \injto B$}
+	Let $A$ and $B$ be sets. A function $f: A \to B$ is \dfntxt{injective}, or \dfntxt{one-to-one}, or an \dfntxt{injection}, if no two distinct elements of $A$ are mapped to the same element of $B$ by $f$.
 	\[ \forall x, y \in A : x \ne y \implies f(x) \ne f(y) \]
+	We write $f: A \injto B$ to denote that $f$ is an injective function from $A$ to $B$.
 \end{dfnbox}
+
+\begin{dfnbox}{Surjective Function, Onto Function, Surjection, $f: A \surjto B$}
+	Let $A$ and $B$ be sets. A function $f: A \to B$ is \dfntxt{surjective}, or \dfntxt{onto}, or a \dfntxt{surjection}, if every element of $B$ is mapped to by $f$.
+	\[ \forall y \in B \ \exists x \in A : f(x) = y \]
+	We write $f: A \surjto B$ to denote that $f$ is a surjective function from $A$ to $B$.
+\end{dfnbox}
+
+\begin{dfnbox}{Bijective Function, One-to-one Correspondence, Bijection, $f: A \bijto B$}
+	Let $A$ and $B$ be sets. A function $f: A \to B$ is \dfntxt{bijective}, or a \dfntxt{one-to-one correspondence}, or a \dfntxt{bijection}, if $f$ is both injective and surjective. We write $f: A \bijto B$ to denote that $f$ is a bijective function from $A$ to $B$.
+\end{dfnbox}
+
+\begin{dfnbox}{Image, $f[S]$}
+	Let $A$ and $B$ be sets. Given a function $f: A \to B$, the \dfntxt{image} of a subset $S \subseteq A$ under $f$, denoted by $f[S]$, is the set defined by
+	\[ f[S] \coloneq \{ f(x) : x \in S \}. \]
+\end{dfnbox}
+
+In other words, $f[S]$ is the subset of $B$ containing all elements that $f$ maps to from $S$. For example, consider the function $f: \R \to \R$ defined by $f(x) \coloneq x^2$. The image of the interval $(-1, 1)$ under $f$ is the interval $f[(-1, 1)] = [0, 1)$.
+
+\begin{dfnbox}{Inverse Image, Preimage, $f^{-1}[S]$}
+	Let $A$ and $B$ be sets. Given a function $f: A \to B$, the \dfntxt{inverse image} or \dfntxt{preimage} of a subset $S \subseteq B$ under $f$, denoted by $f^{-1}[S]$, is the set defined by
+	\[ f^{-1}[S] \coloneq \{ x \in A : f(x) \in S \}. \]
+\end{dfnbox}
+
+In other words, $f^{-1}[S]$ is the subset of $A$ containing all elements that map into $S$ under $f$. For example, consider the function $f: \R \to \R$ defined by $f(x) \coloneq x^2$. The inverse image of the interval $(1, 4)$ is the union of the two intervals $f^{-1}[(1, 4)] = (-2, -1) \cup (1, 2)$.
+
+\begin{dfnbox}{Range}
+	Let $A$ and $B$ be sets. The \dfntxt{range} of a function $f: A \to B$ is the image $f[A]$ of $A$ under $f$.
+\end{dfnbox}
+
+Note that a function is surjective if and only if its range equals its codomain.
 
 \begin{dfnbox}{Identity Function, $\id_A$}
 	Let $A$ be a set. The \dfntxt{identity function} on $A$ is the function $\id_A: A \to A$ defined by $\id_A(a) \coloneq a$ for all $a \in A$.
@@ -96,7 +127,7 @@ For example, the less-than relation $<$ is a binary relation on the set $\N$ of 
 \chapter{Topology}
 
 \begin{dfnbox}{Topology}
-	Let $X$ be a set. A \dfntxt{topology} on $X$
+	Let $X$ be a set. A \dfntxt{topology} on $X$ is a collection $T \subseteq \powerset(X)$ of subsets of $X$
 \end{dfnbox}
 
 \begin{dfnbox}{Metric, Distance Function}

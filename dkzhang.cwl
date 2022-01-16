@@ -44,6 +44,9 @@
 \alg{carriers; operations}#m
 
 \powerset#m
+\injto#m
+\surjto#m
+\bijto#m
 
 \id#m
 
