@@ -26,8 +26,16 @@ The true utility of topology lies in studying higher-dimensional spaces, or spac
 Before we can begin studying topology, we first need to define what we mean by the terms ``geometric space'' and ``continuous deformation.'' While our discussion will be guided by familiar examples, such as the real number line $\R$ and the plane $\R^2$, we ultimately want to construct definitions that are as general as possible. As a starting point, if you've ever taken a class on calculus or real analysis, you may have learned how to define the notion of \dfntxt{continuity} for a real-valued function of a real variable.
 
 \begin{dfnbox}{Continuity of a Function $\R \to \R$ at a Point}
-	A function $f: \R \to \R$ is \dfntxt{continuous at a point} $x_0 \in \R$ if, for every $\epsilon > 0$, there exists $\delta > 0$ such that for all $x \in \R$, if $\abs{x - x_0}$
+	A function $f: \R \to \R$ is \dfntxt{continuous at a point} $x_0 \in \R$ if, for every $\epsilon > 0$, there exists $\delta > 0$ such that for all $x \in \R$, if $\abs{x - x_0} < \delta$, then $\abs{f(x) - f(x_0)} < \epsilon$.
 \end{dfnbox}
+
+\begin{dfnbox}{Continuity of a Function $\R \to \R$}
+	A function $f: \R \to \R$ is \dfntxt{continuous} if $f$ is continuous at every point $x_0 \in \R$.
+\end{dfnbox}
+
+This definition formalizes the idea that a function is continuous if wiggling the input $x$ by a small amount only causes a small wiggle in the output $f(x)$. It introduces the notion of an ``input window'' of size $\delta$, defined by $\abs{x - x_0} < \delta$, and an ``output window'' of size $\epsilon$, defined by $\abs{f(x) - f(x_0)} < \epsilon$. It then requires that, as $\delta$ shrinks to zero, so too should $\epsilon$.
+
+Now, the only reason that $f$ needs to map real numbers to real numbers in this definition is to allow us to define the input window $\abs{x - x_0} < \delta$ and the output window $\abs{f(x) - f(x_0)} < \epsilon$ using the operations of subtraction and absolute value. The purpose of the expression $\abs{x - x_0}$ is to measure the \dfntxt{distance} between the numbers $x$ and $x_0$. This suggests that if we had another means of measuring distance, then we could define a more general notion of continuity for functions between sets other than $\R$.
 
 \begin{dfnbox}{Metric, Distance Function}
 	Let $X$ be a set. A \dfntxt{metric} on $X$, also known as a \dfntxt{distance function} on $X$, is a function $d: X \times X \to \R$ that satisfies the following requirements:
@@ -38,6 +46,71 @@ Before we can begin studying topology, we first need to define what we mean by t
 	\end{boxitems}
 \end{dfnbox}
 
+For example, the function $d(x, y) \coloneq \abs{x - y}$ is a metric on the real number line $\R$, and the Euclidean distance function $d(\vx, \vy) \coloneq \sqrt{(\vx - \vy)^T (\vx - \vy)}$ is a metric on $\R^n$. These metrics are so commonly used that we call them the \dfntxt{usual metrics} on $\R$ and $\R^n$, respectively.
+
+\begin{dfnbox}{Metric Space, Underlying Set, Point}
+	A \dfntxt{metric space} is an ordered pair $(X, d)$ consisting of a set $X$, called the \dfntxt{underlying set} of the metric space, and a metric $d$ on $X$. The elements of $X$ are called the \dfntxt{points} of the metric space $(X, d)$.
+\end{dfnbox}
+
+We also generalize the notion of a ``window'' to an arbitrary metric space. In the context of the real numbers, the ``window'' $\abs{x - x_0} < \delta$ is nothing more than the open interval $(x_0 - \delta, x_0 + \delta)$. In a general metric space, we call a set of this type an \dfntxt{open ball}.
+
+\begin{dfnbox}{Open Ball, $B_r(x_0)$}
+	Let $(X, d)$ be a metric space, $x_0 \in X$, and $r \in \R$. The \dfntxt{open ball} of radius $r$ centered at $x_0$, denoted by $B_r(x_0)$, is the set defined by
+	\[ B_r(x_0) \coloneq \{ x \in X : d(x, x_0) < r \}. \]
+\end{dfnbox}
+
+This is called an \textit{open} ball in analogy with open intervals in $\R$, because it does not contain the points on the boundary of distance exactly $r$ away from $x_0$. Of course, we can also define a ball that \textit{does} contain these boundary points, which is called a \dfntxt{closed ball}.
+
+\begin{dfnbox}{Closed Ball, $B_r[x_0]$}
+	Let $(X, d)$ be a metric space, $x_0 \in X$, and $r \in \R$. The \dfntxt{closed ball} of radius $r$ centered at $x_0$, denoted by $B_r[x_0]$, is the set defined by
+	\[ B_r[x_0] \coloneq \{ x \in X : d(x, x_0) \le r \}. \]
+\end{dfnbox}
+
+The notation $B_r(x_0)$ and $B_r[x_0]$ is inspired by the notation for open intervals $(a, b)$ and closed intervals $[a, b]$ in $\R$. With these definitions in hand, we are now ready to generalize the definition of continuity to a function between any two metric spaces.
+
+\begin{dfnbox}{Continuity at a Point in a Metric Space}
+	Let $(X, d_X)$ and $(Y, d_Y)$ be metric spaces, and let $x_0 \in X$. A function $f: X \to Y$ is \dfntxt{continuous at} $x_0$ if for every $\epsilon > 0$, there exists $\delta > 0$ such that for all $x \in B_\delta(x_0)$, we have $f(x) \in B_\epsilon(f(x_0))$.
+\end{dfnbox}
+
+\begin{dfnbox}{Continuity in a Metric Space}
+	Let $(X, d_X)$ and $(Y, d_Y)$ be metric spaces. A function $f: X \to Y$ is \dfntxt{continuous} if it is continuous at every point $x_0 \in X$.
+\end{dfnbox}
+
+\begin{dfnbox}{Open Set}
+	Let $(X, d)$ be a metric space. A subset $U \subseteq X$ is called an \dfntxt{open set} if, for every point $x \in U$, there exists a radius $r > 0$ such that $B_r(x) \subseteq U$.
+\end{dfnbox}
+
+\begin{dfnbox}{Closed Set}
+	Let $(X, d)$ be a metric space. A subset $F \subseteq X$ is called a \dfntxt{closed set} if its complement $X \setminus F$ is an open set.
+\end{dfnbox}
+
+Note that in topology, the words ``open'' and ``closed'' are not antonyms! It is possible for a subset of a metric space to be open, closed, neither, or both.
+
+\begin{dfnbox}{Image}
+	Let $X$ and $Y$ be sets. Given a function $f: X \to Y$, the \dfntxt{image} of a subset $A \subseteq X$ under $f$, denoted by $f[A]$, is the set defined by
+	\[ f[A] \coloneq \{ f(a) : a \in A \}. \]
+\end{dfnbox}
+
+In other words, $f[A]$ is the subset of $Y$ containing all elements that $f$ maps to from $A$. For example, consider the function $f: \R \to \R$ defined by $f(x) \coloneq x^2$. The image of the interval $(-1, 1)$ under $f$ is the interval $f[(-1, 1)] = [0, 1)$.
+
+\begin{dfnbox}{Inverse Image, Preimage}
+	Let $X$ and $Y$ be sets. Given a function $f: X \to Y$, the \dfntxt{inverse image} or \dfntxt{preimage} of a subset $B \subseteq Y$ under $f$, denoted by $f^{-1}[B]$, is the set defined by
+	\[ f^{-1}[B] \coloneq \{ a \in A : f(a) \in B \}. \]
+\end{dfnbox}
+
+In other words, $f^{-1}[B]$ is the subset of $X$ containing all elements that map into $B$ under $f$. For example, consider the function $f: \R \to \R$ defined by $f(x) \coloneq x^2$. The inverse image of the interval $(1, 4)$ is the union of the two intervals $f^{-1}[(1, 4)] = (-2, -1) \cup (1, 2)$.
+
+\begin{thmbox}{Continuity $\iff$ Preimages of Open Sets are Open}
+	\textbf{Theorem:} Let $(X, d_X)$ and $(Y, d_Y)$ be metric spaces. A function $f: X \to Y$ is continuous if and only if, for every open set $U \subseteq Y$, the inverse image $f^{-1}[U]$ is open in $X$.
+\tcblower
+	\textit{Proof:} Suppose $f$ is continuous, and let an open set $U \subseteq Y$ be given. We must show that the set $f^{-1}[U]$ is open, i.e., for every point $x_0 \in f^{-1}[U]$, there exists a radius $r > 0$ such that $B_r(x_0) \subseteq f^{-1}[U]$. By definition, since $x_0 \in f^{-1}[U]$, we know that $f(x_0) \in U$. Moreover, we know that $U$ is an open set, so there exists a radius $\epsilon > 0$ such that $B_\epsilon(f(x_0)) \subseteq U$. Using the definition of continuity, it follows that there exists $\delta > 0$ such that $f[B_\delta(x_0)] \subseteq B_\epsilon(f(x_0))$. It follows that $B_\delta(x_0) \subseteq f^{-1}[U]$, which is the desired result.
+	
+	Conversely, suppose that the preimage of every open set in $Y$ under $f$ is open in $X$. Let $x_0 \in X$ and $\epsilon > 0$ be given. We must show that there exists $\delta > 0$ such that $f[B_\delta(x_0)] \subseteq B_\epsilon(f(x_0))$. Since $B_\epsilon(f(x_0))$ is an open set, it follows that $f^{-1}[B_\epsilon(f(x_0))]$ is also open. Now, $x_0 \in f^{-1}[B_\epsilon(f(x_0))]$, so by definition, there exists a radius $r > 0$ such that $B_r(x_0) \subseteq f^{-1}[B_\epsilon(f(x_0))]$. It follows that $f[B_r(x_0)] \subseteq B_\epsilon(f(x_0))$, which is the desired result.
+\end{thmbox}
+
+\clearpage
+\listofdefinition
+\listoftheorem
 
 \end{document}
 
