@@ -1,7 +1,43 @@
-% !TeX TS-program = xelatex
-% !TeX encoding = UTF-8
-% !TeX spellcheck = en_US
-% !TeX root = document.tex
+% !TeX program = xelatex
 
-\chapter{Topology}
+\documentclass[12pt]{article}
+\usepackage{dkzhang}
+\usepackage[margin=1in]{geometry}
+
+\title{Notes on Topology}
+\author{David K. Zhang}
+\date{Last updated \today}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+\dfntxt{Topology} is the mathematical study of ``stretchy geometry''; that is, the study of geometric properties that do not change when a space is continuously deformed. This means that topology does not deal with concrete, measurable quantities like lengths and angles, since these can change under continuous deformations. Instead, topology studies much more basic, abstract properties, like whether a space is connected or disconnected, and how many dimensions a given space has.
+
+Topology draws much coarser, more flexible distinctions than the rigid plane geometry that we all learned in grade school. For example, from the perspective of topology, triangles, squares, and circles are all the same shape. If you drew a circle on a rubber sheet, you could imagine that with enough pulling and stretching (but not tearing --- that's discontinuous!), you could make that circle look like a triangle or square.
+
+Now, you might ask why topology is worth studying if it can't even tell the difference between a circle and a square. Indeed, topology is not very useful for studying geometry in a 2D plane or in 3D space, where we, as humans, have a highly-developed sense of spatial intuition. We don't need an abstract definition of ``connectedness'' when we can tell whether a 2D shape is connected or not just by looking.
+
+The true utility of topology lies in studying higher-dimensional spaces, or spaces defined in other abstract ways, where our visual and spatial intuition no longer serves us. Even though we could never concretely visualize lengths and angles in such a space, topology gives us the tools to conceptualize and understand them in a precise, logical fashion. This will allow us to reason about abstract spaces and answer mathematical questions that would otherwise be impossible.
+
+\section{Continuity}
+
+Before we can begin studying topology, we first need to define what we mean by the terms ``geometric space'' and ``continuous deformation.'' While our discussion will be guided by familiar examples, such as the real number line $\R$ and the plane $\R^2$, we ultimately want to construct definitions that are as general as possible. As a starting point, if you've ever taken a class on calculus or real analysis, you may have learned how to define the notion of \dfntxt{continuity} for a real-valued function of a real variable.
+
+\begin{dfnbox}{Continuity of a Function $\R \to \R$ at a Point}
+	A function $f: \R \to \R$ is \dfntxt{continuous at a point} $x_0 \in \R$ if, for every $\epsilon > 0$, there exists $\delta > 0$ such that for all $x \in \R$, if $\abs{x - x_0}$
+\end{dfnbox}
+
+\begin{dfnbox}{Metric, Distance Function}
+	Let $X$ be a set. A \dfntxt{metric} on $X$, also known as a \dfntxt{distance function} on $X$, is a function $d: X \times X \to \R$ that satisfies the following requirements:
+	\begin{boxitems}
+		\item \dfntxt{Positive-definiteness}: $d(x, y) \ge 0$ for all $x, y \in X$, and $d(x, y) = 0$ if and only if $x = y$.
+		\item \dfntxt{Symmetry}: $d(x, y) = d(y, x)$ for all $x, y \in X$.
+		\item \dfntxt{Triangle inequality}: $d(x, z) \le d(x, y) + d(y, z)$ for all $x, y, z \in X$.
+	\end{boxitems}
+\end{dfnbox}
+
+
+\end{document}
 
