@@ -3,6 +3,7 @@
 \documentclass[12pt]{report}
 \usepackage{dkzhang}
 \usepackage[margin=1in]{geometry}
+\usepackage{cancel}
 
 \title{Notes on Mathematics}
 \author{David K. Zhang}
@@ -21,25 +22,64 @@
 
 \chapter{Set Theory}
 
+\begin{dfnbox}{Empty Set, $\emptyset$}
+	The \dfntxt{empty set}, denoted by $\emptyset$, is the set that contains no elements at all.
+\end{dfnbox}
+
+In other words, $x \notin \emptyset$ for all $x$.
+
+\begin{dfnbox}{Subset, $A \subseteq B$}
+	Let $A$ and $B$ be sets. We say that $A$ is a \dfntxt{subset} of $B$, denoted by $A \subseteq B$, if every element of $A$ is also an element of $B$, i.e., for all $a \in A$ we have $a \in B$.
+\end{dfnbox}
+
+\begin{dfnbox}{Superset, $A \supseteq B$}
+	Let $A$ and $B$ be sets. We say that $A$ is a \dfntxt{superset} of $B$, denoted by $A \supseteq B$, if $B$ is a subset of $A$.
+\end{dfnbox}
+
+Note that the empty set is a subset of every set, and that every set is a superset of the empty set.
+
+\begin{dfnbox}{Set Equality, $A = B$, $A \ne B$}
+	Let $A$ and $B$ be sets. We say that $A$ and $B$ are \dfntxt{equal}, denoted by $A = B$, if $A \subseteq B$ and $B \subseteq A$. If this is not the case, then we write $A \ne B$ to denote that $A$ and $B$ are not equal.
+\end{dfnbox}
+
+\begin{dfnbox}{Proper Subset, $A \subsetneq B$}
+	Let $A$ and $B$ be sets. We say that $A$ is a \dfntxt{proper subset} of $B$, denoted by $\subsetneq$, if $A \subseteq B$ and $A \ne B$.
+\end{dfnbox}
+
+\begin{dfnbox}{Proper Superset, $A \supsetneq B$}
+	Let $A$ and $B$ be sets. We say that $A$ is a \dfntxt{proper superset} of $B$, denoted by $\supsetneq$, if $A \supseteq B$ and $A \ne B$.
+\end{dfnbox}
+
+\begin{dfnbox}{Power Set, $\powerset(A)$, $2^A$}
+	Let $A$ be a set. The \dfntxt{power set} of $A$, denoted by $\powerset(A)$ or $2^A$, is the set containing all subsets of $A$.
+\end{dfnbox}
+
+Note that $\powerset(A)$ contains both the empty set $\emptyset$ and the set $A$ itself.
+
 \begin{dfnbox}{Cartesian Product, $A \times B$}
 	Let $A$ and $B$ be sets. The \dfntxt{Cartesian product} of $A$ and $B$, denoted by $A \times B$, is the set of all ordered pairs $(a, b)$ consisting of an element $a \in A$ followed by an element $b \in B$.
 	\[ A \times B \coloneq \{ (a, b) : a \in A \text{ and } b \in B \} \]
 \end{dfnbox}
 
-\begin{dfnbox}{Relation, Binary Relation, $a \mathrel{R} b$}
+\begin{dfnbox}{Relation, Binary Relation, $a \mathrel{R} b$, $a \mathrel{\cancel{R}} b$}
 	Let $A$ and $B$ be sets. A \dfntxt{relation} between $A$ and $B$, also known as a \dfntxt{binary relation} between $A$ and $B$, is a subset $R \subseteq A \times B$ of their Cartesian product.
 
-	Given $a \in A$ and $b \in B$, we write $a \mathrel{R} b$ to denote that  $(a, b) \in R$. If this is the case, then we say that $R$ \textit{relates} $a$ to $b$.
+	Given $a \in A$ and $b \in B$, we write $a \mathrel{R} b$ to denote that  $(a, b) \in R$. If this is the case, then we say that $R$ \textit{relates} $a$ to $b$. Similarly, we write $a \mathrel{\cancel{R}} b$ to denote that $(a, b) \notin R$.
 
 	If $A = B$, then instead of saying that $R$ is a relation \textit{between} $A$ and $A$, we simply say that $R$ is a binary relation \textit{on} $A$.
 \end{dfnbox}
 
 For example, the less-than relation $<$ is a binary relation on the set $\N$ of natural numbers. We write $3 < 4$ to indicate that the ordered pair $(3, 4) \in \N \times \N$ is an element of the relation $<$.
 
-\begin{dfnbox}{Function, Domain, Codomain, $f: A \to B$, $f(x)$}
+\begin{dfnbox}{Function, Domain, Codomain, Maps, $f: A \to B$, $f(x)$}
 	Let $A$ and $B$ be sets. A \dfntxt{function} from $A$ to $B$ is a binary relation $f \subseteq A \times B$ between $A$ and $B$ that has the following property: for each $x \in A$, there exists a unique $y \in B$ such that $x \mathrel{f} y$. We call the set $A$ the \dfntxt{domain} of the function $f$, and we call $B$ the \dfntxt{codomain} of $f$.
 
-	We write $f: A \to B$ to denote that $f$ is a function from $A$ to $B$, and given $x \in A$, we write $f(x)$ to denote the unique element of $B$ that is related to $x$ by $f$.
+	We write $f: A \to B$ to denote that $f$ is a function from $A$ to $B$, and given $x \in A$, we write $f(x)$ to denote the unique element of $B$ that is related to $x$ by $f$. We say that $f$ \dfntxt{maps} $x$ to $f(x)$.
+\end{dfnbox}
+
+\begin{dfnbox}{Injective Function, Injection}
+	Let $A$ and $B$ be sets. A function $f: A \to B$ is \dfntxt{injective}, or an \dfntxt{injection}, if no two distinct elements of $A$ are mapped to the same element of $B$ by $f$.
+	\[ \forall x, y \in A : x \ne y \implies f(x) \ne f(y) \]
 \end{dfnbox}
 
 \begin{dfnbox}{Identity Function, $\id_A$}
@@ -55,6 +95,10 @@ For example, the less-than relation $<$ is a binary relation on the set $\N$ of 
 
 \chapter{Topology}
 
+\begin{dfnbox}{Topology}
+	Let $X$ be a set. A \dfntxt{topology} on $X$
+\end{dfnbox}
+
 \begin{dfnbox}{Metric, Distance Function}
 	Let $X$ be a set. A \dfntxt{metric} on $X$, also known as a \dfntxt{distance function} on $X$, is a function $d: X \times X \to \R$ that satisfies the following requirements:
 	\begin{boxitems}
@@ -64,12 +108,16 @@ For example, the less-than relation $<$ is a binary relation on the set $\N$ of 
 	\end{boxitems}
 \end{dfnbox}
 
-\begin{dfnbox}{Metric Space}
-	A \dfntxt{metric space} is an ordered pair $(X, d)$ consisting of a set $X$ and a metric $d$ on $X$.
+\begin{dfnbox}{Metric Space, Underlying Set, Point}
+	A \dfntxt{metric space} is an ordered pair $(X, d)$ consisting of a set $X$, called the \dfntxt{underlying set} of the metric space, and a metric $d$ on $X$. The elements of $X$ are called the \dfntxt{points} of the metric space $(X, d)$.
 \end{dfnbox}
 
 \begin{dfnbox}{Continuity}
 	Let $(X, d_X)$ and $(Y, d_Y)$ be metric spaces. A function $f: X \to Y$ is \dfntxt{continuous} at a point $x_0 \in X$ if, for every $\epsilon > 0$, there exists $\delta > 0$, such that for all $x \in X$, if $d_X(x, x_0) < \delta$, then $d_Y(f(x), f(x_0)) < \epsilon$.
+\end{dfnbox}
+
+\begin{dfnbox}{Neighborhood}
+Let $(X, T)$ be a topological space, and let $x \in X$. A subset $A \subseteq X$ is a \dfntxt{neighborhood} of $x$ if there exists an open set $U \in T$ such that $x \in U$ and $U \subseteq A$.
 \end{dfnbox}
 
 

@@ -1,5 +1,8 @@
 \dfntxt{term}#n
 
+\subsetneq#m
+\supsetneq#m
+\implies#m
 \coloneq#m
 \text#m
 
@@ -39,6 +42,8 @@
 \abs{x}#m
 \norm{x}#m
 \alg{carriers; operations}#m
+
+\powerset#m
 
 \id#m
 
