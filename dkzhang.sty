@@ -10,15 +10,47 @@
 
 \usepackage{parskip} % skip line after each paragraph, and don't indent
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LISTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TEXT MACROS
 
-\usepackage{enumitem} % needed to define new list environments
+\newcommand{\dfntxt}[1]{{\textbf{\textit{#1}}}}
 
-\newlist{dfnitems}{itemize}{2} % condensed list for use inside tcolorboxes
-\setlist[dfnitems]{
-	label=\textbullet,
-	parsep=0.125\baselineskip
-}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MATH MACROS
+
+\newcommand{\N}{{\symbb{N}}}
+\newcommand{\Z}{{\symbb{Z}}}
+\newcommand{\Q}{{\symbb{Q}}}
+\newcommand{\R}{{\symbb{R}}}
+\newcommand{\C}{{\symbb{C}}}
+
+\newcommand{\va}{{\symbf{a}}}
+\newcommand{\vb}{{\symbf{b}}}
+\newcommand{\vc}{{\symbf{c}}}
+\newcommand{\vd}{{\symbf{d}}}
+\newcommand{\ve}{{\symbf{e}}}
+\newcommand{\vf}{{\symbf{f}}}
+\newcommand{\vg}{{\symbf{g}}}
+\newcommand{\vh}{{\symbf{h}}}
+\newcommand{\vi}{{\symbf{i}}}
+\newcommand{\vj}{{\symbf{j}}}
+\newcommand{\vk}{{\symbf{k}}}
+\newcommand{\vl}{{\symbf{l}}}
+\newcommand{\vm}{{\symbf{m}}}
+\newcommand{\vn}{{\symbf{n}}}
+\newcommand{\vo}{{\symbf{o}}}
+\newcommand{\vp}{{\symbf{p}}}
+\newcommand{\vq}{{\symbf{q}}}
+\newcommand{\vr}{{\symbf{r}}}
+\newcommand{\vs}{{\symbf{s}}}
+\newcommand{\vt}{{\symbf{t}}}
+\newcommand{\vu}{{\symbf{u}}}
+\newcommand{\vv}{{\symbf{v}}}
+\newcommand{\vw}{{\symbf{w}}}
+\newcommand{\vx}{{\symbf{x}}}
+\newcommand{\vy}{{\symbf{y}}}
+\newcommand{\vz}{{\symbf{z}}}
+
+\newcommand{\alg}[1]{{\langle {#1} \rangle}}
+\DeclareMathOperator{\id}{id}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BOXES
 
@@ -79,53 +111,34 @@
 	boxed title style={size=small}
 }
 
+\usepackage{tocloft}
+
+\newcommand{\listdefinitionname}{List of Definitions}
+\newlistof{definition}{dfn}{\listdefinitionname}
+
 \newenvironment{dfnbox}[1]{
+	\addcontentsline{dfn}{definition}{#1}
 	\begin{tcdfnbox}{#1}
 }{
 	\end{tcdfnbox}
 }
 
+\newcommand{\listtheoremname}{List of Theorems}
+\newlistof{theorem}{thm}{\listtheoremname}
+
 \newenvironment{thmbox}[1]{
+	\addcontentsline{thm}{theorem}{#1}
 	\begin{tcthmbox}{#1}
 }{
 	\end{tcthmbox}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TEXT MACROS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LISTS
 
-\newcommand{\dfntxt}[1]{{\textbf{\textit{#1}}}}
+\usepackage{enumitem} % needed to define new list environments
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MATH MACROS
-
-\newcommand{\N}{{\symbb{N}}}
-\newcommand{\Z}{{\symbb{Z}}}
-\newcommand{\Q}{{\symbb{Q}}}
-\newcommand{\R}{{\symbb{R}}}
-\newcommand{\C}{{\symbb{C}}}
-
-\newcommand{\vo}{{\symbf{0}}}
-\newcommand{\va}{{\symbf{a}}}
-\newcommand{\vb}{{\symbf{b}}}
-\newcommand{\ve}{{\symbf{e}}}
-\newcommand{\vv}{{\symbf{v}}}
-\newcommand{\vw}{{\symbf{w}}}
-\newcommand{\vx}{{\symbf{x}}}
-\newcommand{\vy}{{\symbf{y}}}
-\newcommand{\vz}{{\symbf{z}}}
-\newcommand{\abs}[1]{{\left\lvert {#1} \right\rvert}}
-\newcommand{\norm}[1]{{\left\lVert {#1} \right\rVert}}
-
-\newcommand{\cwle}{\preceq}
-\newcommand{\cwlt}{\prec}
-\newcommand{\cwge}{\succeq}
-\newcommand{\cwgt}{\succ}
-
-\newcommand{\dd}{{\symrm{d}}}
-\newcommand{\alg}[1]{{\langle {#1} \rangle}}
-\newcommand{\gen}[1]{{\langle {#1} \rangle}}
-\newcommand{\injto}{\hookrightarrow}
-\newcommand{\normalin}{\trianglelefteq}
-\DeclareMathOperator{\vspan}{span}
-\DeclareMathOperator{\const}{const}
-\DeclareMathOperator{\Frac}{Frac}
-\DeclareMathOperator{\Tr}{Tr}
+\newlist{boxitems}{itemize}{2} % condensed list for use inside tcolorboxes
+\setlist[boxitems]{
+	label=\textbullet,
+	parsep=0.125\baselineskip
+}
