@@ -28,6 +28,10 @@
 
 In other words, $x \notin \emptyset$ for all $x$.
 
+\begin{dfnbox}{Non-empty Set}
+	A set is \dfntxt{non-empty} if it contains at least one element.
+\end{dfnbox}
+
 \begin{dfnbox}{Subset, $A \subseteq B$}
 	Let $A$ and $B$ be sets. We say that $A$ is a \dfntxt{subset} of $B$, denoted by $A \subseteq B$, if every element of $A$ is also an element of $B$, i.e., for all $x \in A$ we have $x \in B$.
 \end{dfnbox}
@@ -42,6 +46,8 @@ Note that the empty set is a subset of every set, and that every set is a supers
 	Let $A$ and $B$ be sets. We say that $A$ and $B$ are \dfntxt{equal}, denoted by $A = B$, if $A \subseteq B$ and $B \subseteq A$. If this is not the case, then we write $A \ne B$ to denote that $A$ and $B$ are not equal.
 \end{dfnbox}
 
+Using this notation, we write $A \ne \emptyset$ to denote that a set $A$ is non-empty.
+
 \begin{dfnbox}{Proper Subset, $A \subsetneq B$}
 	Let $A$ and $B$ be sets. We say that $A$ is a \dfntxt{proper subset} of $B$, denoted by $\subsetneq$, if $A \subseteq B$ and $A \ne B$.
 \end{dfnbox}
@@ -55,6 +61,22 @@ Note that the empty set is a subset of every set, and that every set is a supers
 \end{dfnbox}
 
 Note that $\powerset(A)$ contains both the empty set $\emptyset$ and the set $A$ itself.
+
+\begin{dfnbox}{Union, $A \cup B$}
+	Let $A$ and $B$ be sets. The \dfntxt{union} of $A$ and $B$, denoted by $A \cup B$, is the set containing all elements of $A$ together with all elements of $B$.
+	\[ x \in (A \cup B) \iff x \in A \text{ or } x \in B \]
+\end{dfnbox}
+
+\begin{dfnbox}{Intersection, Intersects, $A \cap B$}
+	Let $A$ and $B$ be sets. The \dfntxt{intersection} of $A$ and $B$, denoted by $A \cap B$, is the set containing all elements that are present in both $A$ and $B$.
+	\[ x \in (A \cap B) \iff x \in A \text{ and } x \in B \]
+	We say that $A$ \dfntxt{intersects} $B$ if the intersection $A \cap B$ is non-empty.
+\end{dfnbox}
+
+\begin{dfnbox}{Difference, Relative Complement, $A \setminus B$}
+	Let $A$ and $B$ be sets. The \dfntxt{difference} of $A$ and $B$, also known as the \dfntxt{relative complement} of $B$ in $A$, denoted by $A \setminus B$, is the set containing all the elements of $A$ which are not elements of $B$.
+	\[ A \setminus B \coloneq \{ x \in A : x \notin B \} \]
+\end{dfnbox}
 
 \begin{dfnbox}{Cartesian Product, $A \times B$}
 	Let $A$ and $B$ be sets. The \dfntxt{Cartesian product} of $A$ and $B$, denoted by $A \times B$, is the set of all ordered pairs $(a, b)$ consisting of an element $a \in A$ followed by an element $b \in B$.
@@ -127,7 +149,66 @@ Note that a function is surjective if and only if its range equals its codomain.
 \chapter{Topology}
 
 \begin{dfnbox}{Topology}
-	Let $X$ be a set. A \dfntxt{topology} on $X$ is a collection $T \subseteq \powerset(X)$ of subsets of $X$
+	Let $X$ be a set. A \dfntxt{topology} on $X$ is a collection $T \subseteq \powerset(X)$ of subsets of $X$ that satisfies the following requirements:
+	\begin{boxitems}
+		\item \dfntxt{Empty set is open}: $\emptyset \in T$.
+		\item \dfntxt{Whole set is open}: $X \in T$.
+		\item \dfntxt{Closed under arbitrary unions}: If $S \subseteq T$, then $\bigcup S \in T$.
+		\item \dfntxt{Closed under finite intersections}: If $S \subseteq T$ and $\abs{S}$ is finite, then $\bigcap S \in T$.
+	\end{boxitems}
+\end{dfnbox}
+
+\begin{dfnbox}{Topological Space, Point, Open Set}
+	A \dfntxt{topological space} is an ordered pair $(X, T)$ consisting of a set $X$, called the \dfntxt{underlying set}, and a topology $T$ on $X$. The elements of $X$ are called the \dfntxt{points} of the topological space $(T, X)$, and the elements of $T$ are called \dfntxt{open sets}.
+\end{dfnbox}
+
+\begin{dfnbox}{Closed Set}
+	Let $(X, T)$ be a topological space. A subset $F \subseteq X$ is \dfntxt{closed} if $X \setminus F \in T$.
+\end{dfnbox}
+
+\begin{dfnbox}{Clopen Set}
+	Let $(X, T)$ be a topological space. A subset of $X$ is \dfntxt{clopen} if it is both open and closed.
+\end{dfnbox}
+
+\begin{dfnbox}{Open Neighborhood}
+	Let $(X, T)$ be a topological space. An \dfntxt{open neighborhood} of a point $x \in X$ is an open set $U \in T$ that contains $x$.
+\end{dfnbox}
+
+\begin{dfnbox}{Neighborhood}
+	Let $(X, T)$ be a topological space, and let $x \in X$. A subset $N \subseteq X$ is a \dfntxt{neighborhood} of $x$ if there exists an open set $U \in T$ such that $x \in U$ and $U \subseteq N$.
+\end{dfnbox}
+
+\begin{dfnbox}{Limit Point, Cluster Point, Accumulation Point}
+	Let $(X, T)$ be a topological space, and let $A \subseteq X$. A point $x \in X$ is a \dfntxt{limit point} of $A$, also known as a \dfntxt{cluster point} or \dfntxt{accumulation point}, if every open neighborhood of $x$ contains a point in $A$ other than $x$ itself.
+\end{dfnbox}
+
+In other words, $x$ is a limit point of $A$ if every open neighborhood of $x$ intersects $A \setminus \{x\}$.
+
+\begin{dfnbox}{Derived Set, $A'$}
+	Let $(X, T)$ be a topological space, and let $A \subseteq X$. The \dfntxt{derived set} of $A$, denoted by $A'$, is the set of all limit points of $A$ in $X$.
+	\[ A' \coloneq \{ x \in X : x \text{ is a limit point of } A \} \]
+\end{dfnbox}
+
+\begin{thmbox}{Closed $\iff$ Contains All Limit Points}
+	\textbf{Theorem:} Let $(X, T)$ be a topological space. A subset $A \subseteq X$ is closed if and only if $A$ contains all of its limit points, i.e., $A' \subseteq A$.
+\tcblower
+	\textit{Proof:} Suppose $A \subseteq X$ is closed, and let $x \in A'$ be a limit point of $A$. We will prove that $x \in A$ by contradiction. If $x \notin A$, then $x \in X \setminus A$. By hypothesis, $A$ is closed, so $X \setminus A$ is open. It follows that $X \setminus A$ is an open neighborhood of $x$ that does not intersect $A$, contradicting the hypothesis that $x$ is a limit point of $A$.
+	
+	Conversely, suppose that $A' \subseteq A$. We must prove that $A$ is closed, i.e., that $X \setminus A$ is open. For each point $x \in X \setminus A$, the hypothesis $A' \subseteq A$ implies that $x$ is not a limit point of $A$. Hence, by definition, there exists an open neighborhood $U_x \in T$ of $x$ that does not intersect $A$. The union of all such neighborhoods is precisely $X \setminus A = \bigcup_{x \in X \setminus A} U_x$, which, being a union of open sets, is consequently open.
+\end{thmbox}
+
+\begin{dfnbox}{Interior, $A^\circ$}
+	Let $(X, T)$ be a topological space, and let $A \subseteq X$. The \dfntxt{interior} of $A$, denoted by $A^\circ$, is the union of all open sets $U \in T$ that are subsets of $A$.
+	\[ A^\circ \coloneq \bigcup \ \{ U \in T : U \subseteq A \} \]
+\end{dfnbox}
+
+\begin{dfnbox}{Closure, $\overline{A}$}
+	Let $(X, T)$ be a topological space, and let $A \subseteq X$. The \dfntxt{closure} of $A$, denoted by $\overline{A}$, is the intersection of all closed sets $F \subseteq X$ that are supersets of $A$.
+	\[ \overline{A} \coloneq \bigcap \ \{ F \subseteq X : X \setminus F \in T \text{ and } F \supseteq A \} \]
+\end{dfnbox}
+
+\begin{dfnbox}{Continuous Function}
+	Let $(X, T_X)$ and $(Y, T_Y)$ be topological spaces. A function $f: X \to Y$ is \dfntxt{continuous} with respect to the topologies $T_X$ and $T_Y$ if, for every $U \in T_Y$, we have $f^{-1}[U] \in T_X$.
 \end{dfnbox}
 
 \begin{dfnbox}{Metric, Distance Function}
@@ -145,10 +226,6 @@ Note that a function is surjective if and only if its range equals its codomain.
 
 \begin{dfnbox}{Continuity}
 	Let $(X, d_X)$ and $(Y, d_Y)$ be metric spaces. A function $f: X \to Y$ is \dfntxt{continuous} at a point $x_0 \in X$ if, for every $\epsilon > 0$, there exists $\delta > 0$, such that for all $x \in X$, if $d_X(x, x_0) < \delta$, then $d_Y(f(x), f(x_0)) < \epsilon$.
-\end{dfnbox}
-
-\begin{dfnbox}{Neighborhood}
-Let $(X, T)$ be a topological space, and let $x \in X$. A subset $A \subseteq X$ is a \dfntxt{neighborhood} of $x$ if there exists an open set $U \in T$ such that $x \in U$ and $U \subseteq A$.
 \end{dfnbox}
 
 
