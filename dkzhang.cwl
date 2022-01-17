@@ -10,6 +10,8 @@
 \lBrack#m
 \rBrack#m
 \text#m
+\begin{align*}#\math,array
+\end{align*}
 
 \N#m
 \Z#m
@@ -48,6 +50,7 @@
 \injto#m
 \surjto#m
 \bijto#m
+\normalin#m
 
 \id#m
 
