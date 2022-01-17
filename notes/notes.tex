@@ -248,6 +248,27 @@ In other words, $x$ is a limit point of $A$ if every open neighborhood of $x$ in
 	\end{boxitems}
 \end{dfnbox}
 
+\begin{thmbox}{Cancellation Laws}
+	\textbf{Theorem:} Let $\alg{G; 1, {}^{-1}, \cdot}$ be a group, and let $x, y, z \in G$.
+	\begin{boxitems}
+		\item \dfntxt{Left cancellation law}: If $x \cdot y = x \cdot z$, then $y = z$.
+		\item \dfntxt{Right cancellation law}: If $x \cdot z = y \cdot z$, then $x = y$.
+	\end{boxitems}
+\tcblower
+	\textit{Proof:} If $x \cdot y = x \cdot z$, then:
+	\begin{align*}
+		y & = 1 \cdot y                &  & \text{(identity property)}    \\
+		  & = (x^{-1} \cdot x) \cdot y &  & \text{(inverse property)}     \\
+		  & = x^{-1} \cdot (x \cdot y) &  & \text{(associative property)} \\
+		  & = x^{-1} \cdot (x \cdot z) &  & \text{(by hypothesis)}        \\
+		  & = (x^{-1} \cdot x) \cdot z &  & \text{(associative property)} \\
+		  & = 1 \cdot z                &  & \text{(inverse property)}     \\
+		  & = z                        &  & \text{(identity property)}
+	\end{align*}
+	Similarly, if $x \cdot z = y \cdot z$, then
+	\[ x = x \cdot 1 = x \cdot (z \cdot z^{-1}) = (x \cdot z) \cdot z^{-1} = (y \cdot z) \cdot z^{-1} = y \cdot (z \cdot z^{-1}) = y \cdot 1 = y. \]
+\end{thmbox}
+
 \begin{dfnbox}{Abelian Group}
 	An \dfntxt{abelian group} is a group $\alg{G; 1, {}^{-1}, \cdot}$ that satisfies the following additional requirement:
 	\begin{boxitems}
@@ -295,6 +316,63 @@ The key ingredient in the definition of a rng is \dfntxt{distributivity}, which 
 	A rng is \dfntxt{nonzero} or \dfntxt{nontrivial} if its underlying set contains more than one element.
 \end{dfnbox}
 
+\begin{dfnbox}{Subrng, $S \le R$}
+	Let $\alg{R; 0, -, +, \cdot}$ be a rng. A \dfntxt{subrng} of $\alg{R; 0, -, +, \cdot}$ is a subgroup $S \le \alg{R; 0, -, +}$ that satisfies the following additional requirement:
+	\begin{boxitems}
+		\item \dfntxt{Closed under products}: If $x, y \in S$, then $x \cdot y$ in $S$.
+	\end{boxitems}
+	We write $S \le R$ to indicate that $S$ is a subrng of $\alg{R; 0, -, +, \cdot}$.
+\end{dfnbox}
+
+The zero rng is a subrng of every rng.
+
+\begin{dfnbox}{Rng Homomorphism}
+	Let $\alg{R; 0_R, -_R +_R, \cdot_R}$ and $\alg{S; 0_S, -_S +_S, \cdot_S}$ be rngs. A \dfntxt{rng homomorphism} from $R$ to $S$ is a function $f: R \to S$ that satisfies the following requirements:
+	\begin{boxitems}
+		\item \dfntxt{Preserves additive structure}: $f$ is a group homomorphism between the abelian groups $\alg{R; 0_R, -_R +_R}$ and $\alg{S; 0_S, -_S +_S}$.
+		\item \dfntxt{Preserves products}: $f(x \cdot_R y) = f(x) \cdot_S f(y)$ for all $x, y \in R$.
+	\end{boxitems}
+\end{dfnbox}
+
+Every rng homomorphism is also a group homomorphism, so the theory and terminology of group homomorphisms is immediately applicable to rng homomorphisms. For example, the kernel of a rng homomorphism $f: R \to S$ is still defined to be the set
+\[ \ker f \coloneq \{ x \in R : f(x) = 0_S \}. \]
+
+As with groups, we will often refer to a rng $\alg{R; 0, -, +, \cdot}$ by the name of its underlying set $R$ and denote the multiplication operation $\cdot$ by juxtaposition. We will never denote addition, subtraction, or negation by juxtaposition, so the symbols $+$ and $-$ will always be used.
+
+\begin{dfnbox}{Ideal, Left Ideal, Right Ideal, One-Sided Ideal, Two-Sided Ideal, $I \normalin R$}
+	Let $\alg{R; 0, 1, -, +, \cdot}$ be a rng.
+	\begin{boxitems}
+		\item A \dfntxt{left ideal} of $R$ is a subrng $I \le R$ that satisfies the following additional requirement:
+		\begin{boxitems}
+			\item \dfntxt{Absorbs left multiplication}: $rx \in I$ for all $r \in R$ and $x \in I$.
+		\end{boxitems}
+		\item A \dfntxt{right ideal} of $R$ is a subrng $I \le R$ that satisfies the following additional requirement:
+		\begin{boxitems}
+			\item \dfntxt{Absorbs right multiplication}: $xr \in I$ for all $x \in I$ and $r \in R$.
+		\end{boxitems}
+		\item A \dfntxt{one-sided ideal} of $R$ is a subrng $I \le R$ that is a left ideal or a right ideal (possibly both).
+		\item A \dfntxt{two-sided ideal} of $R$, or simply an \dfntxt{ideal} of $R$, is a subrng $I \le R$ that is both a left ideal and a right ideal.
+	\end{boxitems}
+	We write $I \normalin R$ to denote that $I$ is a (two-sided) ideal of $R$.
+\end{dfnbox}
+
+\begin{dfnbox}{Rng of Formal Power Series, $R \lBrack x \rBrack$}
+	Let $\alg{R; 0, -, +, \cdot}$ be a rng. The \dfntxt{rng of formal power series} over $\alg{R; 0, -, +, \cdot}$, denoted by $R \lBrack x \rBrack$, \todo{FINISH THIS DEFINITION}
+\end{dfnbox}
+
+\begin{dfnbox}{Rng of Polynomials, $R[x]$}
+	Let $\alg{R; 0, -, +, \cdot}$ be a rng. The \dfntxt{rng of polynomials} over $\alg{R; 0, -, +, \cdot}$, denoted by $R[x]$, is the subrng of $R \lBrack x \rBrack$ \todo{FINISH THIS DEFINITION}
+\end{dfnbox}
+
+\begin{dfnbox}{Commutative Rng}
+	A \dfntxt{commutative rng} is a rng $\alg{R; 0, -, +, \cdot}$ that satisfies the following additional requirement:
+	\begin{boxitems}
+		\item \dfntxt{Commutativity}: $x \cdot y = y \cdot x$ for all $x, y \in R$.
+	\end{boxitems}
+\end{dfnbox}
+
+The word ``commutative'' in the term ``commutative rng'' emphasizes that the \textit{multiplication} operation is commutative. By definition, the addition operation is always commutative in every rng.
+
 \begin{dfnbox}{Ring}
 	A \dfntxt{ring} is an algebraic structure $\alg{R; 0, 1, -, +, \cdot}$ consisting of:
 	\begin{boxitems}
@@ -312,11 +390,23 @@ The key ingredient in the definition of a rng is \dfntxt{distributivity}, which 
 	\end{boxitems}
 \end{dfnbox}
 
-\begin{dfnbox}{Commutative Ring}
-	A \dfntxt{commutative ring} is a ring $R$ that satisfies the following additional requirement:
+\begin{dfnbox}{Subring}
+	Let $\alg{R; 0, 1, -, +, \cdot}$ be a ring. A \dfntxt{subring} of $\alg{R; 0, 1, -, +, \cdot}$ is a subrng $S \le \alg{R; 0, -, +, \cdot}$ that satisfies the following additional requirement:
 	\begin{boxitems}
-		\item \dfntxt{Commutativity}: $x \cdot y = y \cdot x$ for all $x, y \in R$.
+		\item \dfntxt{Contains the identity}: $1 \in S$.
 	\end{boxitems}
 \end{dfnbox}
+
+In these notes, we will only use the notation $S \le R$ for \textit{subrngs}, not \textit{subrings}. This ensures consistency with the notation $I \normalin R$ for ideals (i.e., $I \normalin R \implies I \le R$), since an ideal is always a subrng, but not necessarily a subring.
+
+\begin{dfnbox}{Field}
+	A \dfntxt{field} is a commutative ring $\alg{K; 0, 1, -, +, \cdot}$ that satisfies the following additional requirements:
+	\begin{boxitems}
+		\item \dfntxt{Nontriviality}: $0 \ne 1$.
+		\item \dfntxt{Invertibility}: Every element of $K \setminus \{0\}$ has a two-sided inverse, i.e., $K^\times = K \setminus \{0\}$.
+	\end{boxitems}
+\end{dfnbox}
+
+
 
 \end{document}
