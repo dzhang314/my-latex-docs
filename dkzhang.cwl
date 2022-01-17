@@ -1,10 +1,14 @@
 \dfntxt{term}#n
 \todo{content}#n
 
+\tcblower#n
+
 \subsetneq#m
 \supsetneq#m
 \implies#m
 \coloneq#m
+\lBrack#m
+\rBrack#m
 \text#m
 
 \N#m
